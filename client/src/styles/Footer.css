@@ -1,0 +1,16 @@
+footer {
+    min-height: 40px;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+footer p {
+    color: azure;
+    font-size: 11px;
+
+}

@@ -1,0 +1,19 @@
+.Container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.content {
+    align-items: center;
+    padding: 40px;
+    max-width: 50%;
+}
+
+.content p {
+    color: azure;
+    font-size: 14px;
+}

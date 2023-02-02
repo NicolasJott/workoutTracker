@@ -1,0 +1,65 @@
+header {
+    display: flex;
+    max-height: 90px;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+    padding: 0 20px;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navMenu {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+
+}
+
+.navMenu a {
+    padding: 0 80px;
+    font-weight: 600;
+    flex-wrap: nowrap;
+    font-size: 14px;
+
+
+}
+
+
+.rightMenu a {
+    font-weight: 600;
+    padding: 0 0 0 20px;
+    flex-wrap: nowrap;
+    font-size: 14px;
+}
+
+a {
+    text-decoration: none;
+    color: azure;
+    letter-spacing: 1.5px;
+
+}
+
+.navMenu a:hover {
+    color: gray;
+    transition: ease-in 200ms;
+
+}
+
+.rightMenu a:hover {
+    color: gray;
+    transition: ease-in 200ms;
+}
+
+h1 {
+    color: azure;
+}
