@@ -11,7 +11,7 @@ function Header() {
 
     const renderHeader = () => {
         console.log(cookies.jwt)
-        if (!cookies.jwt) {
+        if (cookies.jwt) {
         return (
             <><div className="navMenu">
             <Link to="/">Home</Link>
