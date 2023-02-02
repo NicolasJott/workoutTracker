@@ -1,17 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import { Link } from "react-router-dom";
-import isAuth from '../components/Login'
+import React, {useState} from 'react';
+import {Link} from "react-router-dom";
 import '../styles/Header.css';
-import { useCookies } from 'react-cookie'
+
+
+
 
 function Header() {
 
-
-    const [cookies, setCookies] = useCookies()
+    const [token, setToken] = useState(sessionStorage.getItem('token'))
+    console.log(token)
 
     const renderHeader = () => {
-        console.log(cookies.jwt)
-        if (cookies.jwt) {
+        if (token !== null) {
         return (
             <><div className="navMenu">
             <Link to="/">Home</Link>
@@ -21,7 +21,7 @@ function Header() {
         <div className="rightMenu">
             <Link to="/user">Account</Link>
         </div></>
-        
+
     )
         } else {
             return (

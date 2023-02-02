@@ -4,7 +4,15 @@ import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import '../styles/Register.css'
 
-function Login() {
+function setToken(userToken){
+    sessionStorage.setItem("token", JSON.stringify(userToken))
+
+}
+
+const Login = () => {
+    setToken(null)
+
+
     const navigate = useNavigate();
     const [values, setValues] = useState({
         email: "",
@@ -15,6 +23,8 @@ function Login() {
         toast.error(err, {
             position:"bottom-right",
         });
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,6 +41,8 @@ function Login() {
                     else if (password) generateError(password);
                 } else {
                     navigate("/")
+                    setToken(data.token)
+
                 }
             }
         }catch (err) {
@@ -61,7 +73,7 @@ function Login() {
                         }
                     />
                     <button className="btn">Log in</button>
-                    <span>Don't have an account ? <Link to="/register"> Register </Link></span>
+                    <span>Don't have an account? <Link to="/register"> Register </Link></span>
                 </form>
             </div>
         </div>

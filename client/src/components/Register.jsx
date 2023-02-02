@@ -62,6 +62,7 @@ return (
                             }
                         />
                         <button className="btn">Register</button>
+                        <span>Already have an account? <Link to="/login"> Login </Link></span>
                     </form>
                 </div>
             </div>

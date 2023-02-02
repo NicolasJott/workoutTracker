@@ -6,6 +6,7 @@ import MealTracker from "./components/MealTracker";
 import Register from "./components/Register";
 import Workout from "./components/Workout";
 import Login from "./components/Login"
+import React, {useState} from "react";
 
 
 
@@ -13,19 +14,20 @@ import Login from "./components/Login"
 
 function App() {
 
+    const [token, setToken] = useState()
 
 
 
   return (
       <div>
         <Router>
-          <Header/>
+          <Header token={token}/>
           <Routes>
-            <Route path="/" element={<Home/>} />
+            <Route path="/" element={<Home />} />
             <Route path="/workout" element={<Workout/>} />
             <Route path="/meal" element={<MealTracker/>} />
             <Route path="/register" element={<Register/>} />
-            <Route path="/login" element={<Login/>} />
+            <Route path="/login" element={<Login setToken={setToken}/>} />
           </Routes>
           <Footer/>
         </Router>
