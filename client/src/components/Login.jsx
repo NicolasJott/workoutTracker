@@ -3,17 +3,24 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import '../styles/Register.css'
+import {useCookies} from "react-cookie";
 
-function setToken(userToken){
-    sessionStorage.setItem("token", JSON.stringify(userToken))
 
-}
+
+
 
 const Login = () => {
-    setToken(null)
 
 
+    const cookie = useCookies([])
     const navigate = useNavigate();
+    useEffect(() => {
+        if (cookie.jwt) {
+            navigate("/")
+        }
+    }, [cookie, navigate])
+
+
     const [values, setValues] = useState({
         email: "",
         password: "",
@@ -31,17 +38,16 @@ const Login = () => {
         try{
             const { data } = await axios.post("http://localhost:3001/login",{
                 ...values
-            },{
-                withCredentials: true
-            });
+            },{ withCredentials: true });
             if(data) {
                 if(data.errors) {
                     const {email,password} = data.errors;
                     if(email) generateError(email);
                     else if (password) generateError(password);
                 } else {
+                    localStorage.setItem('jwt', data.token)
+                    console.log(localStorage.getItem('jwt'))
                     navigate("/")
-                    setToken(data.token)
 
                 }
             }

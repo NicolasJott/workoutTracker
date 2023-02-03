@@ -1,17 +1,18 @@
-import React, {useState} from 'react';
-import {Link} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {Link, useNavigate} from "react-router-dom";
 import '../styles/Header.css';
+import {useCookies} from "react-cookie";
 
 
 
 
 function Header() {
 
-    const [token, setToken] = useState(sessionStorage.getItem('token'))
-    console.log(token)
+    const cookies = useCookies([])
+
 
     const renderHeader = () => {
-        if (token !== null) {
+        if (cookies.jwt) {
         return (
             <><div className="navMenu">
             <Link to="/">Home</Link>
