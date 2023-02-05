@@ -25,6 +25,22 @@ header {
 
 }
 
+.navbtn {
+    background: none;
+    color: azure;
+    font-size: 1em;
+    border: 2px solid azure;
+    padding: .5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.navbtn:hover {
+    background: azure;
+    color: #181818;
+    transition: 250ms;
+}
+
 .navMenu a {
     padding: 0 80px;
     font-weight: 600;
