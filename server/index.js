@@ -2,8 +2,8 @@ const express = require("express")
 const cors = require("cors")
 const app = express();
 const cookieParser = require("cookie-parser");
-const connectDatabase = require('./database')
-require("dotenv").config({ path: ".env" });
+const connectDatabase = require('./config/database')
+require("dotenv").config({ path: "server/config/config.env" });
 
 
 const PORT = process.env.PORT || 3001
