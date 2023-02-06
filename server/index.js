@@ -3,7 +3,7 @@ const cors = require("cors")
 const app = express();
 const cookieParser = require("cookie-parser");
 const connectDatabase = require('./config/database')
-require("dotenv").config({ path: "server/config/config.env" });
+require("dotenv").config({ path: '/.env'});
 
 
 const PORT = process.env.PORT || 3001
