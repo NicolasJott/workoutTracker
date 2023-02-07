@@ -345,7 +345,7 @@ section {
 
 .top {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   position: absolute;
   top: 0;
   right: 0;
@@ -354,8 +354,11 @@ section {
 
 .logs {
   display: flex;
-  width: auto;
-  height: auto;
+  flex-direction: column;
+  width: 630px;
+  max-height: 450px;
+  overflow: scroll;
+  padding: 20px;
 }
 
 .bottom {
@@ -383,4 +386,11 @@ section {
 
 .workout-item {
   color: black;
+  display: flex;
+  flex-direction: row;
+}
+
+.log-item {
+  display: flex;
+  flex-direction: column;
 }

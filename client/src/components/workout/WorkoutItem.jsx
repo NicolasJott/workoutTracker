@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 const WorkoutItem = ({ auth, workout: { workoutType, workout, sets, reps, time, calories }}) => (
-    <div>
+    <div className="log-item">
         <p className="workout-item">Workout type: {workoutType}</p>
         <p className="workout-item">Workout: {workout}</p>
         <p className="workout-item">Number of Sets: {sets}</p>
         <p className="workout-item">Number of Reps: {reps}</p>
         <p className="workout-item">Amount of time: {time}</p>
         <p className="workout-item">Calories Burned: {calories}</p>
+        <hr/>
     </div>
 )
 

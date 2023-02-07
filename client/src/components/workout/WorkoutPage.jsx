@@ -42,7 +42,7 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
                 <div className="logs">
                     {workouts.map((workout) => (
                         <WorkoutItem key={workout._id} workout={workout}/>
-                    ))};
+                    ))}
                     </div>
                     <div className="bottom">
                         <button className="btn" onClick={handleClick}>Add New Workout</button>
@@ -50,7 +50,6 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
                 </>
                 )}
                 {action && <WorkoutForm onFormClose={handleFormClose} />}
-
                 </div>
             </div>
 
