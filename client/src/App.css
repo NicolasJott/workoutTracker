@@ -25,7 +25,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  position: fixed;
+
 }
 
 .logo {
@@ -281,13 +281,59 @@ section {
 }
 
 .log-container {
-  height: 70vh;
+  height: 80vh;
   width: 70vw;
-  border-radius: 5px;
+  border-radius: 10px;
   display: flex;
-  border: 1px solid #e9ecef;
-  box-shadow: 1px 3px 10px #e9ecef;
   background-color: azure;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar {
+  position: relative;
+  height: 80vh;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.calendar__picture {
+  position: relative;
+  height: 200px;
+  padding: 20px;
+  color: #fff;
+  background: #262626;
+  text-shadow: 0 2px 2px black;
+  box-sizing: border-box;
+}
+
+.calendar__date {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 10px;
+  box-sizing: border-box;
+
+}
+
+.calendar__day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  font-weight: 600;
+  color: #262626;
+}
+
+.calendar__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 85px;
+  cursor: pointer;
+  color: #262626;
 }
 
 
