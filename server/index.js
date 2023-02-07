@@ -1,27 +1,19 @@
 const express = require("express")
-const cors = require("cors")
-const app = express();
-const cookieParser = require("cookie-parser");
 const connectDatabase = require('./config/database')
-require("dotenv").config({ path: '/.env'});
+require("dotenv").config()
 
+const app = express();
 
-const PORT = process.env.PORT || 3001
-
-app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`)
-});
-
+//Database
 connectDatabase();
 
-app.use(cors({
-        origin:["http://localhost:3000"],
-        method: ["GET", "POST"],
-        credentials: true,
-    })
-);
+// Init middleware
+app.use(express.json({ strict: false }))
 
-app.use(cookieParser());
-app.use(express.json());
-const user = require('./Routes/userRoute');
-app.use("/", user);
+//Routes
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
+
+//Server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server started on PORT ${PORT}`));

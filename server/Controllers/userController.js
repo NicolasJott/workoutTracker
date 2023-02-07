@@ -1,7 +1,8 @@
 const User = require('../models/userModel');
-const catchAsync = require('../middlewares/catchAsync');
+const catchAsync = require('../middleware/catchAsync');
 const sendCookie = require('../utils/sendCookie');
 const ErrorHandler = require('../utils/errorHandler');
+const jwt = require("jsonwebtoken");
 
 exports.signupUser = catchAsync(async (req, res, next) => {
 
@@ -38,6 +39,16 @@ exports.loginUser = catchAsync(async (req, res, next) => {
     if (!isPasswordMatched) {
         return next(new ErrorHandler("Password doesn't match", 401));
     }
+
+
+    jwt.sign(
+        {},
+        process.env.JWT_SECRET,
+        { expiresIn: 360000 }, // Change to 3600 during production
+        (err, token) => {
+            if (err) throw err;
+            res.json({token});
+        });
 
     sendCookie(user, 201, res);
 });

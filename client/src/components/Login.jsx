@@ -1,72 +1,71 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
-import { Link, useNavigate } from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import '../styles/Register.css'
-import {useCookies} from "react-cookie";
-import {useDispatch, useSelector} from "react-redux";
-import { clearErrors, loginUser } from '../actions/authAction';
-import Cookies from "js-cookie";
+import { login } from '../actions/auth';
+import {connect} from "react-redux";
+import PropTypes from 'prop-types';
 
 
 
 
+const Login = ({ login, isAuthenticated }) => {
+        const [formData, setFormData] = useState({
+            email: '',
+            password: '',
+        });
 
-const Login = () => {
+        const { email, password } = formData;
 
+        const handleOnChange = (e) =>
+            setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+        const handleOnSubmit = async (e) => {
+            e.preventDefault();
 
-    const { loading, isAuthenticated, error, user } = useSelector((state) => state.user);
+            await login(email, password);
+        };
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
-    const handleLogin = (e) => {
-        e.preventDefault();
-        dispatch(loginUser(email, password));
-    }
-
-    useEffect(() => {
-        if (error) {
-            toast.error(error);
-            dispatch(clearErrors());
+        if(isAuthenticated) {
+            return <Navigate to='/' />;
         }
-        if (isAuthenticated) {
-            navigate("/")
-        }
-    }, [dispatch, error, isAuthenticated, navigate]);
 
-    return (
+        return (
         <section>
             <div className="register">
                 <div className="col-1">
                     <h2>Log In</h2>
-                    <form id="form" className="flex flex-col" onSubmit={handleLogin} >
+                    <form id="form" className="flex flex-col" onSubmit={handleOnSubmit} >
                         <input
                             type="email"
                             name="email"
                             placeholder="Email"
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={handleOnChange}
                         />
                         <input
                             type="password"
                             name="password"
                             placeholder="Password"
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={handleOnChange}
                         />
                         <button className="btn">Login</button>
                         <span>Don't have an account? <Link to="/register"> Register </Link></span>
                     </form>
                 </div>
-                <ToastContainer />
             </div>
-
         </section>
     );
 }
 
-export default Login;
+Login.propTypes = {
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { login })(Login);

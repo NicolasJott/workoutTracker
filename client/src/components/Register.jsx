@@ -1,78 +1,90 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer, toast } from "react-toastify";
-import { Link, useNavigate } from "react-router-dom";
-import { clearErrors, registerUser } from '../actions/authAction';
+import { useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { setAlert } from '../actions/alert';
+import { register } from '../actions/auth';
 import '../styles/Register.css'
 
 
-function Register() {
+const Register = ({ setAlert, register, isAuthenticated }) => {
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+        password2: '',
+    });
 
-    const { loading, isAuthenticated, error } = useSelector((state) => state.user);
+    const {name, email, password, password2} = formData;
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const handleOnChange = (e) =>
+        setFormData({...formData, [e.target.name]: e.target.value});
 
-
-
-
-
-    const handleRegister = (e) => {
+    const handleOnSubmit = async (e) => {
         e.preventDefault();
 
-        const userCheck = /^[a-z0-9_.-]{6,25}$/igm;
-
-        if (password.length < 8) {
-            toast.error("Password length must be atleast 8 characters");
-            return;
+        if (password !== password2) {
+            setAlert('Passwords do not match', 'danger');
+        } else {
+            await register({ email,  password});
         }
+    };
 
-        dispatch(registerUser(email, password))
+    // Redirect User after Registeration
+    if (isAuthenticated) {
+        return <Navigate to='/'/>;
     }
 
-
-
-    useEffect(() => {
-        if (error) {
-            toast.error(error);
-            dispatch(clearErrors());
-        }
-        if (isAuthenticated) {
-            navigate('/')
-        }
-    }, [dispatch, error, isAuthenticated, navigate]);
 
 return (
     <section>
             <div className="register">
                 <div className="col-1">
                     <h2>Create an Account</h2>
-                    <form id="form" className="flex flex-col" onSubmit={handleRegister} >
+                    <form id="form" className="flex flex-col" onSubmit={handleOnSubmit} >
                         <input
-                            type="email"
-                            name="email"
-                            placeholder="Email"
+                            type='email'
+                            placeholder='Email Address'
+                            name='email'
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={handleOnChange}
+                            required
                         />
                         <input
-                            type="password"
-                            name="password"
-                            placeholder="Password"
+                            type='password'
+                            placeholder='Password'
+                            minLength='6'
+                            name='password'
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={handleOnChange}
+                            required
+                        />
+                        <input
+                            type='password'
+                            placeholder='Confirm Password'
+                            minLength='6'
+                            name='password2'
+                            value={password2}
+                            onChange={handleOnChange}
+                            required
                         />
                         <button className="btn">Register</button>
                         <span>Already have an account? <Link to="/login"> Login </Link></span>
                     </form>
                 </div>
             </div>
-            <ToastContainer />
         </section>
 );
 }
 
-export default Register;
+Register.propTypes = {
+    setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Register);

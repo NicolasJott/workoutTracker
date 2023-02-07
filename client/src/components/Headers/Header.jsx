@@ -2,7 +2,6 @@ import React from 'react';
 import {Link } from "react-router-dom";
 import '../../styles/Header.css';
 import {useDispatch, } from "react-redux";
-import { logoutUser} from "../../actions/authAction";
 
 
 
@@ -12,7 +11,7 @@ function Header() {
     const dispatch = useDispatch()
 
     const handleLogout = () =>  {
-        dispatch(logoutUser());
+        console.log("hello")
     }
 
     return (
