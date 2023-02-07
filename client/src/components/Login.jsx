@@ -1,24 +1,26 @@
 import React, { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import {Link, Navigate} from "react-router-dom";
-import '../styles/Register.css'
 import { login } from '../actions/auth';
 import {connect} from "react-redux";
+import { useFormInputValidation } from "react-form-input-validation";
 import PropTypes from 'prop-types';
 
 
 
 
 const Login = ({ login, isAuthenticated }) => {
-        const [formData, setFormData] = useState({
+        const [fields, errors, form] = useFormInputValidation({
             email: '',
             password: '',
+        } , {
+            email: "required|email",
+            password: "required"
         });
 
-        const { email, password } = formData;
+        const { email, password } = fields;
 
-        const handleOnChange = (e) =>
-            setFormData({ ...formData, [e.target.name]: e.target.value });
+
 
         const handleOnSubmit = async (e) => {
             e.preventDefault();
@@ -40,16 +42,20 @@ const Login = ({ login, isAuthenticated }) => {
                             type="email"
                             name="email"
                             placeholder="Email"
-                            value={email}
-                            onChange={handleOnChange}
+                            value={fields.email}
+                            onBlur={form.handleBlurEvent}
+                            onChange={form.handleChangeEvent}
                         />
+                        <span className="error">{errors.email ? errors.email : ""}</span>
                         <input
                             type="password"
                             name="password"
                             placeholder="Password"
-                            value={password}
-                            onChange={handleOnChange}
+                            value={fields.password}
+                            onBlur={form.handleBlurEvent}
+                            onChange={form.handleChangeEvent}
                         />
+                        <span className="error">{errors.password ? errors.password : ""}</span>
                         <button className="btn">Login</button>
                         <span>Don't have an account? <Link to="/register"> Register </Link></span>
                     </form>

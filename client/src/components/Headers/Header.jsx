@@ -1,35 +1,45 @@
-import React from 'react';
 import {Link } from "react-router-dom";
-import '../../styles/Header.css';
-import {useDispatch, } from "react-redux";
+import {logout} from "../../actions/auth";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 
 
 
-function Header() {
+const Header = ({ auth: { isAuthenticated, loading }, logout}) => {
+    const authVisible = (
+        <><div className="navMenu">
+            <Link to="/">Home</Link>
+            <Link to="/workout">Workout</Link>
+            <Link to="/meal">Calorie Tracker</Link>
+        </div>
+            <div className="rightMenu">
+                <button className="navbtn" onClick={logout}>Logout</button>
+            </div></>
 
-    const dispatch = useDispatch()
+    )
 
-    const handleLogout = () =>  {
-        console.log("hello")
-    }
+    const guestVisible = (
+        <Link to="/login">Login</Link>
+    )
 
     return (
        <header>
            <div className="logo">
                <h1><Link to="/">FitnessTrack</Link></h1>
            </div>
-           <div className="navMenu">
-               <Link to="/">Home</Link>
-               <Link to="/workout">Workout</Link>
-               <Link to="/meal">Calorie Tracker</Link>
-           </div>
-           <div className="rightMenu">
-               <button className="navbtn" onClick={handleLogout}>Logout</button>
-           </div>
+
+           {!loading && <>{isAuthenticated ? authVisible : guestVisible}</>}
        </header>
     );
 
 }
 
-export default Header;
+Header.propTypes = {
+    logout: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({ auth: state.auth });
+
+export default connect(mapStateToProps, {logout})(Header);

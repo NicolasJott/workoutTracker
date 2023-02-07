@@ -1,36 +1,36 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setAlert } from '../actions/alert';
 import { register } from '../actions/auth';
-import '../styles/Register.css'
+import { useFormInputValidation } from "react-form-input-validation";
+
 
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
 
-    const [formData, setFormData] = useState({
+    const [fields, errors, form] = useFormInputValidation({
         email: '',
         password: '',
-        password2: '',
+        password_confirmation: '',
+    }, {
+        email: "required|email",
+        password: "required",
+        password_confirmation: "required|same:password",
     });
 
-    const {name, email, password, password2} = formData;
+    const { email, password } = fields
 
-    const handleOnChange = (e) =>
-        setFormData({...formData, [e.target.name]: e.target.value});
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
 
-        if (password !== password2) {
-            setAlert('Passwords do not match', 'danger');
-        } else {
-            await register({ email,  password});
-        }
+            await register( {email, password} );
+
     };
 
-    // Redirect User after Registeration
+    // Redirect User after Registration
     if (isAuthenticated) {
         return <Navigate to='/'/>;
     }
@@ -46,28 +46,34 @@ return (
                             type='email'
                             placeholder='Email Address'
                             name='email'
-                            value={email}
-                            onChange={handleOnChange}
+                            value={fields.email}
+                            onChange={form.handleChangeEvent}
+                            onBlur={form.handleBlurEvent}
                             required
                         />
+                        <span className="error">{errors.email ? errors.email : ""}</span>
                         <input
-                            type='password'
+                            type='text'
                             placeholder='Password'
                             minLength='6'
                             name='password'
-                            value={password}
-                            onChange={handleOnChange}
+                            value={fields.password}
+                            onChange={form.handleChangeEvent}
+                            onBlur={form.handleBlurEvent}
                             required
                         />
+                        <span className="error">{errors.password ? errors.password : ""}</span>
                         <input
-                            type='password'
+                            type='text'
                             placeholder='Confirm Password'
                             minLength='6'
-                            name='password2'
-                            value={password2}
-                            onChange={handleOnChange}
+                            name='password_confirmation'
+                            value={fields.password_confirmation}
+                            onChange={form.handleChangeEvent}
+                            onBlur={form.handleBlurEvent}
                             required
                         />
+                        <span className="error">{errors.password_confirmation ? errors.password_confirmation : ""}</span>
                         <button className="btn">Register</button>
                         <span>Already have an account? <Link to="/login"> Login </Link></span>
                     </form>
