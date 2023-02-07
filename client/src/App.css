@@ -281,6 +281,7 @@ section {
 }
 
 .log-container {
+  position: relative;
   height: 80vh;
   width: 70vw;
   border-radius: 10px;
@@ -337,3 +338,45 @@ section {
 }
 
 
+.h1-2 {
+  color: black;
+  top:0;
+}
+
+.top {
+  display: flex;
+  flex-direction: column-reverse;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.logs {
+  display: flex;
+  width: auto;
+  height: auto;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.btn {
+  background-color: #003049;
+  border-radius: 5px;
+  color: #e9ecef;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: azure;
+  color: #181818;
+  transition: 250ms;
+}

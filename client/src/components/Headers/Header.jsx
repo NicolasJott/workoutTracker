@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 
 
 
-const Header = ({ auth: { isAuthenticated, loading }, logout}) => {
+const Header = ({ auth: { isAuthenticated, loading, user }, logout}) => {
     const authVisible = (
         <><div className="navMenu">
             <Link to="/">Home</Link>
@@ -14,7 +14,7 @@ const Header = ({ auth: { isAuthenticated, loading }, logout}) => {
             <Link to="/meal">Calorie Tracker</Link>
         </div>
             <div className="rightMenu">
-                <button className="navbtn" onClick={logout}>Logout</button>
+                <button className="navbtn" onClick={logout}>Hello, {user && user.firstName}!</button>
             </div></>
 
     )

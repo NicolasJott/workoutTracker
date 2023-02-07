@@ -4,7 +4,7 @@ import Header from "./components/Headers/Header";
 import Home from "./components/Home";
 import MealTracker from "./components/MealTracker";
 import Register from "./components/Register";
-import Workout from "./components/Workout";
+import WorkoutPage from "./components/workout/WorkoutPage";
 import NotFound from "./components/layout/NotFound";
 import Login from "./components/Login"
 import React, {useEffect} from "react";
@@ -18,6 +18,7 @@ import { LOGOUT } from './actions/types';
 import setAuthToken from './utils/setAuthToken';
 
 import './App.css'
+import {Scrat} from "./components/Scrat";
 
 function App() {
 
@@ -46,8 +47,9 @@ function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="/login" element={<Login/>} />
                   <Route path="/register" element={<Register/>}/>
+                  <Route path="/scrat" element={<Scrat/>}/>
                   <Route path='workout'
-                         element={<PrivateRoute component={Workout}/> }
+                         element={<PrivateRoute component={WorkoutPage}/> }
                          />
                   <Route path='meal'
                          element={<PrivateRoute component={MealTracker}/> }
