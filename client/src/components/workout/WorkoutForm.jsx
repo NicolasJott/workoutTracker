@@ -4,9 +4,8 @@ import { connect} from "react-redux";
 
 import { addWorkout } from "../../actions/workout";
 import {useFormInputValidation} from "react-form-input-validation";
-import {Link} from "react-router-dom";
 
-const WorkoutForm = ({ addWorkout }) => {
+const WorkoutForm = ({ addWorkout, onFormClose }) => {
     const [fields, errors, form] = useFormInputValidation({
         workoutType: '',
         workout: '',
@@ -28,10 +27,15 @@ const WorkoutForm = ({ addWorkout }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         await addWorkout( { workoutType, workout, sets, reps, time, calories } )
+        onFormClose();
     }
 
     return(
+
                 <div className="col-1">
+                    <div className="top">
+                        <button className="btn" onClick={onFormClose}>Exit</button>
+                    </div>
                     <h2>Add a Workout</h2>
                     <form id="form" className="flex flex-col" onSubmit={handleSubmit} >
                         <input
@@ -100,4 +104,4 @@ WorkoutForm.propTypes = {
     addWorkout: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addWorkout })(WorkoutForm)
+export default connect(null, { addWorkout, })(WorkoutForm)

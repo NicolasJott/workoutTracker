@@ -1,38 +1,67 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import WorkoutForm from "./WorkoutForm";
 import {Calendar} from "../calendar/Calendar";
 import {formatDate} from "../../utils/formatData";
+import { getWorkouts } from "../../actions/workout";
+import  WorkoutItem  from './WorkoutItem'
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {useParams} from "react-router-dom";
 
 
+const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
+    const { id } = useParams();
+    const [action, setAction] = useState(false);
 
-const WorkoutPage = () => {
+    useEffect(() =>{
+        getWorkouts();
+        }, [getWorkouts]);
+
     const date = new Date();
-    let monthNumber = date.getMonth()
     let today = date.getDate();
-    const year = date.getFullYear()
-    let days;
+
+    const handleClick = () => {
+        setAction(true)
+    }
+
+    const handleFormClose = () => {
+        setAction(false)
+    }
 
 
     const { month, day } = formatDate()
     return (
         <div className="Container">
             <div className="log-container">
+            {!action && (
+                <>
                 <div className="top">
                     <h1 className="h1-2">{day}, {month}  {today}</h1>
                     <h1 className="h1-2">Workout Log:</h1>
                 </div>
                 <div className="logs">
-                    Log goes here
-                </div>
-                <div className="bottom">
-                    <button className="btn">Add New Workout</button>
-                </div>
+                    {workouts.map((workout) => (
+                        <WorkoutItem key={workout._id} workout={workout}/>
+                    ))};
+                    </div>
+                    <div className="bottom">
+                        <button className="btn" onClick={handleClick}>Add New Workout</button>
+                    </div>
+                </>
+                )}
+                {action && <WorkoutForm onFormClose={handleFormClose} />}
 
-
+                </div>
             </div>
-        </div>
 
     );
 }
 
-export default WorkoutPage;
+WorkoutPage.propTypes = {
+    getWorkouts: PropTypes.func.isRequired,
+    workout: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({ workout: state.workout });
+
+export default connect(mapStateToProps, { getWorkouts })(WorkoutPage);

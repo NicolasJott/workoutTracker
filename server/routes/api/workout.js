@@ -43,4 +43,13 @@ router.post(
     }
 );
 
+router.get('/', auth, async (req, res) => {
+    try {
+        const workouts = await Workout.find().sort({ date: -1 });
+        res.json(workouts);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
 module.exports = router;

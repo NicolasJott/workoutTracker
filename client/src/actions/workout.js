@@ -4,7 +4,7 @@ import {setAlert} from "./alert";
 
 export const getWorkouts = () => async (dispatch) => {
     try {
-        const res = await api.get('/workouts');
+        const res = await api.get('/workout');
 
         dispatch({
             type: GET_WORKOUTS,

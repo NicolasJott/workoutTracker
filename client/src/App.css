@@ -380,3 +380,7 @@ section {
   color: #181818;
   transition: 250ms;
 }
+
+.workout-item {
+  color: black;
+}
