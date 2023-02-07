@@ -11,6 +11,10 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL'; // remove
 export const LOGOUT = 'LOGOUT';
 
+export const LOG_ERROR = 'LOG_ERROR';
+
+export const ADD_WORKOUT = 'ADD_WORKOUT';
+export const GET_WORKOUTS = 'GET_WORKOUTS';
 
 
 export const ACCOUNT_DELETED = 'ACCOUNT_DELETED';
