@@ -2,6 +2,7 @@ import {
     GET_WORKOUTS,
     LOG_ERROR,
     ADD_WORKOUT,
+    GET_WORKOUT,
 
 } from "../actions/types";
 
@@ -22,6 +23,12 @@ const workoutReducer = ( state = initialState, action) => {
                 workouts: payload,
                 loading: false,
             };
+        case GET_WORKOUT:
+            return {
+                ...state,
+                workout: payload,
+                loading: false,
+            };
         case ADD_WORKOUT:
             return {
                 ...state,
@@ -34,6 +41,8 @@ const workoutReducer = ( state = initialState, action) => {
                 error: payload,
                 loading: false,
             }
+        default:
+            return state;
     }
 
 }

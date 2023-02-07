@@ -12,7 +12,7 @@ const User = require('../../models/UserModel');
 // @access  Private
 router.post(
     '/',
-    [auth, [check('text', 'Text is required').not().isEmpty()]],
+    auth,
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty())
@@ -23,7 +23,8 @@ router.post(
         try {
             const user = await User.findById(req.user.id).select('-password');
 
-            const newWorkout = new Workout({
+            let newWorkout = new Workout({
+                user: req.user.id,
                 workoutType,
                 workout,
                 sets,
@@ -32,9 +33,9 @@ router.post(
                 calories,
             });
 
-            const workout = await newWorkout.save();
+            await newWorkout.save();
 
-            res.json(workout);
+            res.json(newWorkout);
         } catch (err) {
             console.error(err.message);
             res.status(500).send('Server Error');

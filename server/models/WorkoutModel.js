@@ -1,7 +1,12 @@
 const mongoose = require("mongoose")
+const {Schema} = require("mongoose");
 
 
 const userSchema = new mongoose.Schema({
+    user:{
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+    },
     workoutType: {
         type: String,
         required: true,
@@ -21,9 +26,13 @@ const userSchema = new mongoose.Schema({
     },
     calories: {
         type: String
-    }
+    },
+    date:{
+        type: Date,
+        default: Date.now
+    },
 
 });
 
 
-module.exports = mongoose.model("workoutLog", userSchema)
+module.exports = mongoose.model("workout_logs", userSchema)

@@ -1,4 +1,4 @@
-import api from "js-cookie";
+import api from '../utils/api';
 import {ADD_WORKOUT, GET_WORKOUTS, LOG_ERROR} from "./types";
 import {setAlert} from "./alert";
 
@@ -22,16 +22,19 @@ export const getWorkouts = () => async (dispatch) => {
 };
 
 
-export const addWorkout = (formData) => async (dispatch) => {
+export const addWorkout = ({ workoutType, workout, sets, reps, time, calories }) => async (dispatch) => {
+
+    const body = { workoutType, workout, sets, reps, time, calories };
+
     try {
-        const res = await api.post('/workout', formData);
+        const res = await api.post('/workout', body);
 
         dispatch({
             type: ADD_WORKOUT,
             payload: res.data,
         });
 
-        dispatch(setAlert('Workout Added', 'success'));
+        dispatch(setAlert('WorkoutPage Added', 'success'));
     } catch (err) {
         dispatch({
             type: LOG_ERROR,
