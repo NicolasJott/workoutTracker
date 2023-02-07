@@ -11,22 +11,26 @@ import { useFormInputValidation } from "react-form-input-validation";
 const Register = ({ setAlert, register, isAuthenticated }) => {
 
     const [fields, errors, form] = useFormInputValidation({
+        firstName: '',
+        lastName:'',
         email: '',
         password: '',
         password_confirmation: '',
     }, {
+        firstName: 'required',
+        lastName:'required',
         email: "required|email",
         password: "required",
         password_confirmation: "required|same:password",
     });
 
-    const { email, password } = fields
+    const { firstName, lastName, email, password } = fields
 
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
 
-            await register( {email, password} );
+            await register( { firstName, lastName, email, password} );
 
     };
 
@@ -42,6 +46,26 @@ return (
                 <div className="col-1">
                     <h2>Create an Account</h2>
                     <form id="form" className="flex flex-col" onSubmit={handleOnSubmit} >
+                        <input
+                            type='text'
+                            placeholder='First Name'
+                            name='firstName'
+                            value={fields.firstName}
+                            onChange={form.handleChangeEvent}
+                            onBlur={form.handleBlurEvent}
+                            required
+                        />
+                        <span className="error">{errors.firstName ? errors.firstName : ""}</span>
+                        <input
+                            type='text'
+                            placeholder='Last Name'
+                            name='lastName'
+                            value={fields.lastName}
+                            onChange={form.handleChangeEvent}
+                            onBlur={form.handleBlurEvent}
+                            required
+                        />
+                        <span className="error">{errors.lastName ? errors.lastName : ""}</span>
                         <input
                             type='email'
                             placeholder='Email Address'

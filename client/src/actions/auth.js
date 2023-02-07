@@ -26,9 +26,9 @@ export const loadUser = () => async (dispatch) => {
 
 // Register User
 export const register =
-    ({  email, password }) =>
+    ({  firstName, lastName, email, password }) =>
         async (dispatch) => {
-            const body = {  email, password };
+            const body = {  firstName, lastName, email, password };
 
             try {
                 const res = await api.post('/users', body);
