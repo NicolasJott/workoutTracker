@@ -1,38 +1,283 @@
-.App {
+body {
+  background: #0f0c29;
+  background: -webkit-linear-gradient(to left, #24243e, #302b63, #0f0c29);
+  background: linear-gradient(to left, #24243e, #302b63, #0f0c29);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+header {
+  display: flex;
+  max-height: 90px;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+  padding: 0 20px;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navMenu {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+
+}
+
+.navbtn {
+  background: none;
+  color: azure;
+  font-size: 1em;
+  border: 2px solid azure;
+  padding: .5em 1em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.navbtn:hover {
+  background: azure;
+  color: #181818;
+  transition: 250ms;
+}
+
+.navMenu a {
+  padding: 0 80px;
+  font-weight: 600;
+  flex-wrap: nowrap;
+  font-size: 14px;
+
+
+}
+
+
+.rightMenu a {
+  font-weight: 600;
+  padding: 0 0 0 20px;
+  flex-wrap: nowrap;
+  font-size: 14px;
+}
+
+a {
+  text-decoration: none;
+  color: azure;
+  letter-spacing: 1.5px;
+
+}
+
+.navMenu a:hover {
+  color: gray;
+  transition: ease-in 200ms;
+
+}
+
+.rightMenu a:hover {
+  color: gray;
+  transition: ease-in 200ms;
+}
+
+h1 {
+  color: azure;
+}
+
+footer {
+  min-height: 40px;
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+p {
+  color: azure;
+  font-size: 11px;
+}
+
+.Container {
+  display: flex;
+  flex-direction: column;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
+}
+
+.content {
+  align-items: center;
+  padding: 40px;
+  max-width: 50%;
+}
+
+.content p {
+  color: azure;
+  font-size: 14px;
+}
+
+
+.loginContainer {
+  height: 1000px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
 }
 
-.App-link {
-  color: #61dafb;
+.loginBox {
+  width: 440px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 50px;
+  background: #181818;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
+label {
+  color: azure;
+}
+
+input {
+  border-radius: 5px;
+}
+
+section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.register {
+  max-width: 400px;
+  max-height: 100vh;
+  border-radius: 5px;
+  width: 100vw;
+  display: flex;
+  border: 1px solid #e9ecef;
+  box-shadow: 1px 3px 10px #e9ecef;
+  background-color: azure;
+}
+
+.register a {
+  color: #003049;
+  letter-spacing: normal;
+  text-decoration: underline;
+}
+
+#form {
+  max-width: 320px;
+  width: 100vw;
+  margin: 2em auto;
+
+
+}
+
+#form > input, .btn {
+  border: 1px solid #e9ecef;
+  padding: .9em 1em;
+  background-color: azure;
+}
+
+#form > input:focus {
+  outline: none;
+}
+
+#form > .btn {
+  background-color: #003049;
+  border-radius: 5px;
+  color: #e9ecef;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+  gap: 1em;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.register .col-1 {
+  margin: auto;
+  padding: 1em 0;
+}
+
+#form > span {
+  font-size: 12px;
+  padding: 3px;
+  color: gray;
+}
+
+#form > .error {
+  color: red;
+}
+
+.alert-wrapper {
+  position: fixed;
+  top: 4rem;
+  right: 2rem;
+  display: inline-block;
+}
+
+.alert {
+  padding: 0.8rem;
+  margin: 1rem;
+  opacity: 0.9;
+  background: #f4f4f4;
+  color: #333;
+}
+
+.alert.alert-primary {
+  background-color: #b88017;
+  color: #fff;
+}
+
+.alert.alert-dark {
+  background-color: #403734;
+  color: #fff;
+}
+
+.alert.alert-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.alert.alert-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+
