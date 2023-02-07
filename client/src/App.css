@@ -280,4 +280,14 @@ section {
   color: #fff;
 }
 
+.log-container {
+  height: 70vh;
+  width: 70vw;
+  border-radius: 5px;
+  display: flex;
+  border: 1px solid #e9ecef;
+  box-shadow: 1px 3px 10px #e9ecef;
+  background-color: azure;
+}
+
 
