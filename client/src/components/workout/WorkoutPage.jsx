@@ -12,6 +12,7 @@ import {useParams} from "react-router-dom";
 const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
     const { id } = useParams();
     const [action, setAction] = useState(false);
+    const [active, setActive] = useState(false);
 
     useEffect(() =>{
         getWorkouts();
@@ -24,6 +25,14 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
         setAction(true)
     }
 
+    const handleCalendar = () => {
+        setActive(true)
+    }
+
+    const handleCalendarClose = () => {
+        setActive(false)
+    }
+
     const handleFormClose = () => {
         setAction(false)
     }
@@ -33,10 +42,10 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
     return (
         <div className="Container">
             <div className="log-container">
-            {!action && (
+            {!action && !active && (
                 <>
                 <div className="top">
-                    <h1 className="h1-2">{day}, {month}  {today}</h1>
+                    <h1 className="h1-2" onClick={handleCalendar} >{day}, {month} {today}</h1>
                     <h1 className="h1-2">Workout Log:</h1>
                 </div>
                 <div className="logs">
@@ -50,6 +59,7 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
                 </>
                 )}
                 {action && <WorkoutForm onFormClose={handleFormClose} />}
+                {active && <Calendar onCalendarClose={handleCalendarClose} />}
                 </div>
             </div>
 

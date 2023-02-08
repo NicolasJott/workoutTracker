@@ -1,7 +1,7 @@
 import {formatDate, getDaysInMonth} from "../../utils/formatData";
 
 
-export const Calendar = () => {
+export const Calendar = ({ onCalendarClose }) => {
 
     const date = new Date();
     let monthNumber = date.getMonth()
@@ -14,6 +14,10 @@ export const Calendar = () => {
 
     days = getDaysInMonth(monthNumber, year);
 
+    const handleClick = () => {
+        console.log('click')
+        onCalendarClose();
+    }
 
 
     return(
@@ -34,7 +38,7 @@ export const Calendar = () => {
                 <div className="calendar__number"></div>
                 <div className="calendar__number"></div>
                 {days.map((d) => (
-                    <div className="calendar__number">{d}</div>
+                    <div className="calendar__number" ><h2 onClick={handleClick}>{d}</h2></div>
                 ))}
             </div>
         </div>
