@@ -203,18 +203,24 @@ section {
 
 }
 
-#form>input,
+#authForm {
+  max-width: 320px;
+  width: 100vw;
+  margin: 2em auto;
+}
+
+#authForm>input,
 .btn {
   border: 1px solid #e9ecef;
   padding: .9em 1em;
   background-color: azure;
 }
 
-#form>input:focus {
+#authForm>input:focus {
   outline: none;
 }
 
-#form>.btn {
+#authForm>.btn {
   background-color: #003049;
   border-radius: 5px;
   color: #e9ecef;
@@ -236,13 +242,13 @@ section {
   padding: 1em 0;
 }
 
-#form>span {
+#authForm>span {
   font-size: 12px;
   padding: 3px;
   color: gray;
 }
 
-#form>.error {
+#authForm>.error {
   color: red;
 }
 
@@ -342,6 +348,7 @@ section {
 .h1-2 {
   color: black;
   top: 0;
+  cursor: pointer;
 }
 
 .top {

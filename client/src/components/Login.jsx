@@ -37,7 +37,7 @@ const Login = ({ login, isAuthenticated }) => {
             <div className="register">
                 <div className="col-1">
                     <h2>Log In</h2>
-                    <form id="form" className="flex flex-col" onSubmit={handleOnSubmit} >
+                    <form id="authForm" className="flex flex-col" onSubmit={handleOnSubmit} >
                         <input
                             type="email"
                             name="email"

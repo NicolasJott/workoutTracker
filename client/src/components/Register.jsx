@@ -45,7 +45,7 @@ return (
             <div className="register">
                 <div className="col-1">
                     <h2>Create an Account</h2>
-                    <form id="form" className="flex flex-col" onSubmit={handleOnSubmit} >
+                    <form id="authForm" className="flex flex-col" onSubmit={handleOnSubmit} >
                         <input
                             type='text'
                             placeholder='First Name'
