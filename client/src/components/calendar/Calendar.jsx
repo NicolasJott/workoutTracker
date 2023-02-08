@@ -16,7 +16,6 @@ export const Calendar = ({ onCalendarClose }) => {
 
     const handleClick = () => {
         console.log('click')
-        onCalendarClose();
     }
 
 
@@ -38,7 +37,7 @@ export const Calendar = ({ onCalendarClose }) => {
                 <div className="calendar__number"></div>
                 <div className="calendar__number"></div>
                 {days.map((d) => (
-                    <div className="calendar__number" ><h2 onClick={handleClick}>{d}</h2></div>
+                    <div className="calendar__number" ><p id={d} className="calendar-num" onClick={handleClick}>{d}</p></div>
                 ))}
             </div>
         </div>

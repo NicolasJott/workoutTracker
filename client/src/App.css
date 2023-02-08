@@ -202,6 +202,24 @@ section {
   margin: 2em auto;
 
 }
+#form>input:focus {
+  outline: none;
+}
+
+#form>input,
+.btn {
+  border: 1px solid #e9ecef;
+  padding: .9em 1em;
+  background-color: azure;
+}
+
+#form>.btn {
+  background-color: #003049;
+  border-radius: 5px;
+  color: #e9ecef;
+  font-size: 1em;
+  cursor: pointer;
+}
 
 #authForm {
   max-width: 320px;
@@ -287,21 +305,11 @@ section {
   color: #fff;
 }
 
-.log-container {
-  position: relative;
-  height: 95vh;
-  width: 70vw;
-  border-radius: 10px;
-  display: flex;
-  background-color: azure;
-  align-items: center;
-  justify-content: center;
-}
+
 
 .calendar {
   position: relative;
-  height: 80vh;
-  width: 100%;
+  width: 300px;
   box-sizing: border-box;
   border-radius: 8px;
   overflow: hidden;
@@ -320,9 +328,10 @@ section {
 .calendar__date {
   padding: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
   grid-gap: 10px;
   box-sizing: border-box;
+  background: azure;
 
 }
 
@@ -339,9 +348,14 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 85px;
+  height: 25px;
   cursor: pointer;
   color: #262626;
+
+}
+
+.calendar-num {
+  color: black;
 }
 
 
@@ -363,8 +377,8 @@ section {
 .logs {
   display: flex;
   flex-direction: column;
-  width: 630px;
-  max-height: 250px;
+  width: auto;
+  max-height: 550px;
   overflow: scroll;
   padding: 20px;
   position: relative;
@@ -407,4 +421,35 @@ section {
   border-color: black;
   border-style: solid;
   border-width: 3px;
+}
+
+.col-left{
+  display: flex;
+  flex-direction: column;
+}
+
+.col-right{
+  display: flex;
+  flex-direction: column;
+  top:0;
+  margin-left: 40px;
+}
+
+.workout-container {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  min-height: 100vh;
+  justify-content: center;
+}
+
+.log-container {
+  position: relative;
+  height: 95vh;
+  width: 50vw;
+  border-radius: 10px;
+  display: flex;
+  background-color: azure;
+  justify-content: center;
+  margin-right: 100px;
 }

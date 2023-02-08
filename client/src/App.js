@@ -18,7 +18,6 @@ import { LOGOUT } from './actions/types';
 import setAuthToken from './utils/setAuthToken';
 
 import './App.css'
-import {Scrat} from "./components/Scrat";
 
 function App() {
 
@@ -47,7 +46,6 @@ function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="/login" element={<Login/>} />
                   <Route path="/register" element={<Register/>}/>
-                  <Route path="/scrat" element={<Scrat/>}/>
                   <Route path='workout'
                          element={<PrivateRoute component={WorkoutPage}/> }
                          />

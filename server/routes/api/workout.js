@@ -45,7 +45,10 @@ router.post(
 
 router.get('/', auth, async (req, res) => {
     try {
-        const workouts = await Workout.find().sort({ date: -1 });
+        const user = User.findById(req.user.id).select('-password')
+
+        //Finds workouts for authed user, Will only show their data and no one else's data
+        const workouts = await Workout.find( {user: req.user.id} );
         res.json(workouts);
     } catch (err) {
         console.error(err.message);

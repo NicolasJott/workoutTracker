@@ -40,8 +40,8 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
 
     const { month, day } = formatDate()
     return (
-        <div className="Container">
-            <div className="log-container">
+        <div className="workout-container">
+            <div className="log-container col-left">
             {!action && !active && (
                 <>
                 <div className="top">
@@ -59,8 +59,8 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
                 </>
                 )}
                 {action && <WorkoutForm onFormClose={handleFormClose} />}
-                {active && <Calendar onCalendarClose={handleCalendarClose} />}
                 </div>
+            <div className="col-right"><Calendar/></div>
             </div>
 
     );
