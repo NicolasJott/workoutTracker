@@ -42,8 +42,8 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
             {!action && !active && (
                 <>
                 <div className="top">
-                    <h1 className="h1-2">{selectedDate.toDateString()}</h1>
-                    <h1 className="h1-2">Workout Log:</h1>
+                    <h3 className="h1-2">{selectedDate.toDateString()}</h3>
+                    <h3 className="h1-2">Workout Log:</h3>
                 </div>
                 <div className="logs">
                     {workouts.map((workout) => (

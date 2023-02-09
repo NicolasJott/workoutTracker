@@ -61,7 +61,7 @@ export const Calendar = ({ currentDate, onDateSelection }) => {
                     <div className="calendar__number"></div>
                 ))}
                 {days.map((d) => (
-                    <div className="calendar__number" ><p id={d} className="calendar-num" onClick={() => handleDaySelection(d)}>{d}</p></div>
+                    <div className={`calendar__number ${d === selectedDay ? 'highlight' : ''}`} onClick={() => handleDaySelection(d)} >{d}</div>
                 ))}
             </div>
         </div>

@@ -309,7 +309,7 @@ section {
 
 .calendar {
   position: relative;
-  width: 300px;
+  width: 400px;
   box-sizing: border-box;
   border-radius: 8px;
   overflow: hidden;
@@ -317,7 +317,7 @@ section {
 
 .calendar__picture {
   position: relative;
-  height: 200px;
+  height: 170px;
   padding: 20px;
   color: #fff;
   background: #262626;
@@ -328,7 +328,7 @@ section {
 .calendar__date {
   padding: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
   grid-gap: 10px;
   box-sizing: border-box;
   background: azure;
@@ -348,9 +348,10 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 25px;
+  padding: 10px;
   cursor: pointer;
   color: #262626;
+  border-radius: 2px;
 
 }
 
@@ -365,6 +366,15 @@ section {
   justify-content: center;
 }
 
+.highlight {
+  background-color: #181818;
+  color: azure;
+}
+
+.highlight p {
+  color: #e9ecef;
+}
+
 i {
   cursor: pointer;
   padding: 20px;
@@ -376,7 +386,6 @@ i:hover {
 
 .h1-2 {
   color: black;
-  top: 0;
 }
 
 .top {
@@ -386,17 +395,17 @@ i:hover {
   top: 0;
   right: 0;
   left: 0;
+  min-height: 60px;
 }
 
 .logs {
   display: flex;
   flex-direction: column;
   width: auto;
-  max-height: 550px;
+  height: auto;
   overflow: scroll;
   padding: 20px;
   position: relative;
-  top: 40px;
 }
 
 .bottom {
@@ -404,8 +413,8 @@ i:hover {
   bottom: 0;
   right: 0;
   left: 0;
+  padding-top: 20px;
   margin-bottom: 20px;
-  padding: 20px;
 }
 
 .btn {
@@ -446,7 +455,7 @@ i:hover {
   display: flex;
   flex-direction: column;
   top:0;
-  margin-left: 40px;
+  margin-left: 5px;
 }
 
 .workout-container {
