@@ -4,6 +4,8 @@ import { connect} from "react-redux";
 
 import { addWorkout } from "../../actions/workout";
 import {useFormInputValidation} from "react-form-input-validation";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 
 const WorkoutForm = ({ addWorkout, onFormClose, selectedDate }) => {
     const [fields, errors, form] = useFormInputValidation({
@@ -33,67 +35,83 @@ const WorkoutForm = ({ addWorkout, onFormClose, selectedDate }) => {
     return(
 
                 <div className="col-1">
-                    <div className="top">
-                        <button className="btn" onClick={onFormClose}>Exit</button>
-                    </div>
-                    <h2>Add a Workout</h2>
-                    <form id="form" className="flex flex-col" onSubmit={handleSubmit} >
-                        <input
-                            type='text'
-                            placeholder='Workout Type'
-                            name='workoutType'
-                            value={fields.workoutType}
+                    <span className="exit-button"><FontAwesomeIcon icon={faX} onClick={onFormClose} /></span>
+
+
+                    <form id="workoutForm" className="flex flex-col" onSubmit={handleSubmit} >
+                        <select
+                            value={workoutType}
+                            name="workoutType"
                             onChange={form.handleChangeEvent}
                             onBlur={form.handleBlurEvent}
                             required
-                        />
-                        <span className="error">{errors.workoutType ? errors.workoutType : ""}</span>
-                        <input
+                        >
+                            <option value="">{errors.workoutType ? errors.workoutType : "Select a Workout"}</option>
+                            <option value="Cardio">Cardio</option>
+                            <option value="Weight Lifting">Weight Lifting</option>
+                        </select>
+                        {(workoutType === 'Weight Lifting') ? (
+                            <>
+                                <input
+                                    type='text'
+                                    placeholder={errors.workout ? errors.workout : "Workout Name"}
+                                    name='workout'
+                                    value={fields.workout}
+                                    onChange={form.handleChangeEvent}
+                                    onBlur={form.handleBlurEvent}
+                                    required
+                                />
+                            <input
+                                type='text'
+                                placeholder={errors.sets ? errors.sets : "Number of Sets"}
+                                name='sets'
+                                value={fields.sets}
+                                onChange={form.handleChangeEvent}
+                                onBlur={form.handleBlurEvent}
+                                required
+                            />
+                            <input
                             type='text'
-                            placeholder='Workout Name'
-                            name='workout'
-                            value={fields.workout}
-                            onChange={form.handleChangeEvent}
-                            onBlur={form.handleBlurEvent}
-                            required
-                        />
-                        <span className="error">{errors.workout ? errors.workout : ""}</span>
-                        <input
-                            type='text'
-                            placeholder='Number of Sets'
-                            name='sets'
-                            value={fields.sets}
-                            onChange={form.handleChangeEvent}
-                            onBlur={form.handleBlurEvent}
-                            required
-                        />
-                        <span className="error">{errors.sets ? errors.sets : ""}</span>
-                        <input
-                            type='text'
-                            placeholder='Number of Reps'
+                            placeholder={errors.reps ? errors.reps : "Number of Reps"}
                             name='reps'
                             value={fields.reps}
                             onChange={form.handleChangeEvent}
                             onBlur={form.handleBlurEvent}
                             required
-                        />
-                        <span className="error">{errors.reps ? errors.reps : ""}</span>
-                        <input
+                            />
+                                </>
+                        ) : (workoutType === 'Cardio') ? (
+                            <>
+                                <input
+                                    type='text'
+                                    placeholder={errors.workout ? errors.workout : "Workout Name"}
+                                    name='workout'
+                                    value={fields.workout}
+                                    onChange={form.handleChangeEvent}
+                                    onBlur={form.handleBlurEvent}
+                                    required
+                                />
+                            <input
                             type='text'
-                            placeholder='Amount of Time'
+                            placeholder={errors.time ? errors.time : "Amount of Time (Minutes)"}
                             name='time'
                             value={fields.time}
                             onChange={form.handleChangeEvent}
-                        />
-                        <span className="error">{errors.time ? errors.time : ""}</span>
-                        <input
+                            />
+                            <input
                             type='text'
-                            placeholder='Calories Burned'
+                            placeholder={errors.calories ? errors.calories : "Calories Burned"}
                             name='calories'
                             value={fields.calories}
                             onChange={form.handleChangeEvent}
-                        />
-                        <span className="error">{errors.calories ? errors.calories : ""}</span>
+                            />
+                            </>
+                        ) : (
+                            <div></div>
+                        )
+                        }
+
+
                         <button className="btn">Add Workout</button>
                     </form>
                 </div>

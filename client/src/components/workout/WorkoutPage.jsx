@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from "react";
 import WorkoutForm from "./WorkoutForm";
 import {Calendar} from "../calendar/Calendar";
-import {formatDate} from "../../utils/formatData";
 import { getWorkouts } from "../../actions/workout";
 import  WorkoutItem  from './WorkoutItem'
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {useParams} from "react-router-dom";
+
+import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
@@ -39,26 +41,29 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
     return (
         <div className="workout-container">
             <div className="log-container col-left">
-            {!action && !active && (
-                <>
                 <div className="top">
                     <h3 className="h1-2">{selectedDate.toDateString()}</h3>
                     <h3 className="h1-2">Workout Log:</h3>
                 </div>
                 <div className="logs">
-                    {workouts.map((workout) => (
+                    {workouts.reverse().map((workout) => (
                         <WorkoutItem key={workout._id} workout={workout}/>
                     ))}
+                    {!action && (
+                        <button className="workout-btn" onClick={handleClick}><FontAwesomeIcon icon={faPlusSquare} size="2xl"/></button>
+                    )}
+                    {action && <WorkoutForm onFormClose={handleFormClose} selectedDate={selectedDate}/>}
                     </div>
                     <div className="bottom">
-                        <button className="btn" onClick={handleClick}>Add New Workout</button>
+                        <button className="btn bottom-btn">edit</button>
                     </div>
-                </>
-                )}
-                {action && <WorkoutForm onFormClose={handleFormClose} selectedDate={selectedDate}/>}
+
                 </div>
             <div className="col-right">
                 <Calendar currentDate={selectedDate} onDateSelection={onCalendarChange}/>
+                <div className="right-box">
+                    <div className="in-box"></div>
+                </div>
             </div>
             </div>
 

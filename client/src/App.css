@@ -392,17 +392,27 @@ i:hover {
   display: flex;
   flex-direction: column;
   position: absolute;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
   top: 0;
   right: 0;
   left: 0;
-  min-height: 60px;
+  max-height: 170px;
+  min-height: 170px;
+  background: #262626;
 }
+
+.top  h3 {
+  color: azure;
+}
+
 
 .logs {
   display: flex;
   flex-direction: column;
   width: auto;
-  height: auto;
+  min-height: 512px;
+  max-height: 512px;
   overflow: scroll;
   padding: 20px;
   position: relative;
@@ -413,6 +423,8 @@ i:hover {
   bottom: 0;
   right: 0;
   left: 0;
+  max-height: 60px;
+  min-height: 60px;
   padding-top: 20px;
   margin-bottom: 20px;
 }
@@ -426,8 +438,7 @@ i:hover {
 }
 
 .btn:hover {
-  background: azure;
-  color: #181818;
+  background: gray;
   transition: 250ms;
 }
 
@@ -435,15 +446,13 @@ i:hover {
   color: black;
   display: flex;
   flex-direction: row;
+  margin: 5px;
 
 }
 
 .log-item {
   display: flex;
   flex-direction: column;
-  border-color: black;
-  border-style: solid;
-  border-width: 3px;
 }
 
 .col-left{
@@ -470,6 +479,7 @@ i:hover {
   position: relative;
   height: 95vh;
   width: 50vw;
+  box-sizing: border-box;
   border-radius: 10px;
   display: flex;
   background-color: azure;
@@ -477,4 +487,70 @@ i:hover {
   margin-right: 100px;
 }
 
+#workoutForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+#workoutForm > input {
+  border: none;
+  padding: 5px;
+  background: azure;
+  width: 100%;
+}
+
+#workoutForm > select {
+  border: none;
+  padding: 5px;
+  width: 50%;
+  background: azure;
+}
+
+#workoutForm>.btn {
+  width: 200px;
+}
+
+.workout-btn {
+
+  background: none;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  width: 25px;
+}
+
+.bottom-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0 20px 10px 0;
+}
+
+.col-1 i {
+  color: #181818;
+  height: 50px;
+  width: 50px;
+}
+
+.exit-button {
+  display: flex;
+  cursor: pointer;
+  justify-content: right;
+  margin: 10px 0 10px 0;
+}
+
+.right-box {
+  margin-top: 20px;
+  position: relative;
+  width: 400px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.in-box {
+  position: relative;
+  background: azure;
+  height: 392px;
+}
