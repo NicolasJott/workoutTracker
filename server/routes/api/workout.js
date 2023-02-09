@@ -18,7 +18,7 @@ router.post(
         if (!errors.isEmpty())
             return res.status(400).json({ errors: errors.array() });
 
-        const { workoutType, workout, sets, reps, time, calories } = req.body;
+        const { workoutType, workout, sets, reps, time, calories, date } = req.body;
 
         try {
             const user = await User.findById(req.user.id).select('-password');
@@ -31,6 +31,7 @@ router.post(
                 reps,
                 time,
                 calories,
+                date,
             });
 
             await newWorkout.save();
@@ -45,10 +46,12 @@ router.post(
 
 router.get('/', auth, async (req, res) => {
     try {
-        const user = User.findById(req.user.id).select('-password')
 
         //Finds workouts for authed user, Will only show their data and no one else's data
-        const workouts = await Workout.find( {user: req.user.id} );
+        const workouts = await Workout.find({
+            user: req.user.id,
+            date: req.query.date
+        });
         res.json(workouts);
     } catch (err) {
         console.error(err.message);

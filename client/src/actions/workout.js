@@ -2,9 +2,15 @@ import api from '../utils/api';
 import {ADD_WORKOUT, GET_WORKOUTS, LOG_ERROR} from "./types";
 import {setAlert} from "./alert";
 
-export const getWorkouts = () => async (dispatch) => {
+export const getWorkouts = (selectedDate) => async (dispatch) => {
     try {
-        const res = await api.get('/workout');
+        const formattedDate = selectedDate.toLocaleDateString("en-US", {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+        });
+
+        const res = await api.get(`/workout?date=${formattedDate}`);
 
         dispatch({
             type: GET_WORKOUTS,
@@ -22,9 +28,14 @@ export const getWorkouts = () => async (dispatch) => {
 };
 
 
-export const addWorkout = ({ workoutType, workout, sets, reps, time, calories }) => async (dispatch) => {
+export const addWorkout = ({ workoutType, workout, sets, reps, time, calories, selectedDate }) => async (dispatch) => {
 
-    const body = { workoutType, workout, sets, reps, time, calories };
+    const date = selectedDate.toLocaleDateString("en-US", {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    });
+    const body = { workoutType, workout, sets, reps, time, calories, date };
 
     try {
         const res = await api.post('/workout', body);
