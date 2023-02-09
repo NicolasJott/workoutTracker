@@ -1,29 +1,53 @@
 import {formatDate, getDaysInMonth} from "../../utils/formatData";
+import {useEffect, useState} from "react";
 
 
-export const Calendar = ({ onCalendarClose }) => {
+export const Calendar = ({ currentDate, onDateSelection }) => {
 
     const date = new Date();
-    let monthNumber = date.getMonth()
+    const [monthNumber, setMonthNumber]  = useState(date.getMonth())
     let today = date.getDate();
-    const year = date.getFullYear()
-    let days;
+    const [year, setYear] = useState(date.getFullYear())
+    const [selectedDay, setSelectedDay] = useState(today)
 
 
-    const { month, day } = formatDate()
-
-    days = getDaysInMonth(monthNumber, year);
-
-    const handleClick = () => {
-        console.log('click')
+    const handleDaySelection = (day) => {
+        setSelectedDay(day);
+        onDateSelection(new Date(currentDate.getFullYear(), monthNumber, day))
     }
+
+    const nextMonth = () => {
+        setMonthNumber((monthNumber + 1) % 12)
+        if (monthNumber === 11) {
+            setYear(year + 1);
+        }
+    }
+
+    const prevMonth = () => {
+        setMonthNumber((monthNumber + 11) % 12)
+        if (monthNumber === 0) {
+            setYear(year - 1)
+        }
+    }
+
+
+    const { month, weekday } = formatDate(monthNumber, selectedDay, year)
+    let days = getDaysInMonth(monthNumber, year);
+    const startDay = new Date(year, monthNumber, 1).getDay();
 
 
     return(
         <div className="calendar">
             <div className="calendar__picture">
-                <h2>{today} , {day} </h2>
-                <h3>{month}</h3>
+                <h2>{selectedDay} , {weekday} {year} </h2>
+                <div className="calendar-month">
+                    <i className="fa fa-fw fa-chevron-left" onClick={prevMonth}></i>
+                    <h3>{month}</h3>
+                    <i className="fa fa-fw fa-chevron-right" onClick={nextMonth}></i>
+                </div>
+
+
+
             </div>
             <div className="calendar__date">
                 <div className="calendar__day">S</div>
@@ -33,11 +57,11 @@ export const Calendar = ({ onCalendarClose }) => {
                 <div className="calendar__day">T</div>
                 <div className="calendar__day">F</div>
                 <div className="calendar__day">S</div>
-                <div className="calendar__number"></div>
-                <div className="calendar__number"></div>
-                <div className="calendar__number"></div>
+                {[...Array(startDay).keys()].map(() => (
+                    <div className="calendar__number"></div>
+                ))}
                 {days.map((d) => (
-                    <div className="calendar__number" ><p id={d} className="calendar-num" onClick={handleClick}>{d}</p></div>
+                    <div className="calendar__number" ><p id={d} className="calendar-num" onClick={() => handleDaySelection(d)}>{d}</p></div>
                 ))}
             </div>
         </div>

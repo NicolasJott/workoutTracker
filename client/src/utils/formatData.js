@@ -1,33 +1,27 @@
 
 
-export const  formatDate = () => {
-    const months = ["January", "February", "March", "April", "May","June", "July", "August", "September", "October", "November", "December"]
-    const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"]
-    const date = new Date()
-    const monthData = date.getMonth()
-    const dayData = date.getDay()
-    let month, day;
-    for (let i = 0; i < months.length; i++){
-        if (monthData === i) {
-            month = months[i]
-        }
-    }
-    for (let i = 0; i < days.length; i++){
-        if (dayData - 1 === i) {
-            day = days[i]
-        }
-    }
+export const  formatDate = (monthNumber, day, year) => {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
 
-    return { month, day }
+    const month = monthNames[monthNumber];
+    const d = new Date(year, monthNumber, day);
+    const weekday = d.toLocaleString('default', { weekday: 'long' });
+
+    return { month, weekday };
 }
 
 export const getDaysInMonth = (month, year) => {
-    let date = new Date(year, month, 1);
-    let days = []
-    while (date.getMonth() === month ){
-        days.push(new Date(date).getDate());
-        date.setDate(date.getDate() + 1)
+    const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    let days = [];
+    if (month === 1) {
+        if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+            days = [...Array(29).keys()].map(i => i + 1);
+            return days;
+        }
     }
+    days = [...Array(daysInMonth[month]).keys()].map(i => i + 1);
     return days;
 }
 

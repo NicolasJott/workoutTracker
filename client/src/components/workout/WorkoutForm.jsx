@@ -5,7 +5,7 @@ import { connect} from "react-redux";
 import { addWorkout } from "../../actions/workout";
 import {useFormInputValidation} from "react-form-input-validation";
 
-const WorkoutForm = ({ addWorkout, onFormClose }) => {
+const WorkoutForm = ({ addWorkout, onFormClose, selectedDate }) => {
     const [fields, errors, form] = useFormInputValidation({
         workoutType: '',
         workout: '',
@@ -26,7 +26,7 @@ const WorkoutForm = ({ addWorkout, onFormClose }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await addWorkout( { workoutType, workout, sets, reps, time, calories } )
+        await addWorkout( { workoutType, workout, sets, reps, time, calories, selectedDate } )
         onFormClose();
     }
 

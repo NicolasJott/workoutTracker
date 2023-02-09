@@ -13,39 +13,36 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
     const { id } = useParams();
     const [action, setAction] = useState(false);
     const [active, setActive] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const today = new Date()
 
-    useEffect(() =>{
-        getWorkouts();
-        }, [getWorkouts]);
 
-    const date = new Date();
-    let today = date.getDate();
 
     const handleClick = () => {
         setAction(true)
-    }
-
-    const handleCalendar = () => {
-        setActive(true)
-    }
-
-    const handleCalendarClose = () => {
-        setActive(false)
     }
 
     const handleFormClose = () => {
         setAction(false)
     }
 
+    const onCalendarChange = (date) => {
+        setSelectedDate(date);
+        getWorkouts(date)
+    };
 
-    const { month, day } = formatDate()
+    useEffect(() =>{
+        getWorkouts(today);
+    }, [getWorkouts]);
+
+
     return (
         <div className="workout-container">
             <div className="log-container col-left">
             {!action && !active && (
                 <>
                 <div className="top">
-                    <h1 className="h1-2" onClick={handleCalendar} >{day}, {month} {today}</h1>
+                    <h1 className="h1-2">{selectedDate.toDateString()}</h1>
                     <h1 className="h1-2">Workout Log:</h1>
                 </div>
                 <div className="logs">
@@ -58,9 +55,11 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
                     </div>
                 </>
                 )}
-                {action && <WorkoutForm onFormClose={handleFormClose} />}
+                {action && <WorkoutForm onFormClose={handleFormClose} selectedDate={selectedDate}/>}
                 </div>
-            <div className="col-right"><Calendar/></div>
+            <div className="col-right">
+                <Calendar currentDate={selectedDate} onDateSelection={onCalendarChange}/>
+            </div>
             </div>
 
     );

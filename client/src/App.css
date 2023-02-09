@@ -358,11 +358,25 @@ section {
   color: black;
 }
 
+.calendar-month {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+i {
+  cursor: pointer;
+  padding: 20px;
+}
+
+i:hover {
+  color: gray;
+}
 
 .h1-2 {
   color: black;
   top: 0;
-  cursor: pointer;
 }
 
 .top {
@@ -453,3 +467,5 @@ section {
   justify-content: center;
   margin-right: 100px;
 }
+
+
