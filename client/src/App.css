@@ -98,14 +98,11 @@ h1 {
 }
 
 footer {
-  min-height: 40px;
+  max-height: 40px;
   display: flex;
   padding: 20px;
   align-items: center;
   justify-content: center;
-  bottom: 0;
-  right: 0;
-  left: 0;
 }
 
 p {
@@ -175,7 +172,6 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
 
 .register {
@@ -391,12 +387,8 @@ i:hover {
 .top {
   display: flex;
   flex-direction: column;
-  position: absolute;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
-  top: 0;
-  right: 0;
-  left: 0;
   max-height: 170px;
   min-height: 170px;
   background: #262626;
@@ -411,22 +403,34 @@ i:hover {
   display: flex;
   flex-direction: column;
   width: auto;
-  min-height: 512px;
-  max-height: 512px;
-  overflow: scroll;
+  min-width: 40vw ;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 60vh;
+  min-height: 40vh;
   padding: 20px;
+  scrollbar-gutter: stable;
   position: relative;
 }
 
+.logs::-webkit-scrollbar {
+  width: 10px;
+}
+
+.logs::-webkit-scrollbar-track {
+  background-color: darkgrey;
+}
+
+.logs::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
 .bottom {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
   max-height: 60px;
   min-height: 60px;
   padding-top: 20px;
   margin-bottom: 20px;
+  border-top: 2px solid #0f0c29;
 }
 
 .btn {
@@ -471,7 +475,7 @@ i:hover {
   display: flex;
   flex-direction: row;
   text-align: center;
-  min-height: 100vh;
+  max-height: 100%;
   justify-content: center;
 }
 
@@ -521,9 +525,6 @@ i:hover {
 }
 
 .bottom-btn {
-  position: absolute;
-  bottom: 0;
-  right: 0;
   margin: 0 20px 10px 0;
 }
 
@@ -541,7 +542,7 @@ i:hover {
 }
 
 .right-box {
-  margin-top: 20px;
+  margin-top: 40px;
   position: relative;
   width: 400px;
   box-sizing: border-box;
@@ -565,4 +566,10 @@ i:hover {
   border: none;
   padding: 5px;
   background: azure;
+}
+
+.workout-log {
+  background: azure;
+  border-radius: 10px;
+  margin: 0 50px 0 0;
 }

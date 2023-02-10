@@ -40,8 +40,9 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
 
 
     return (
-        <div className="workout-container">
-            <div className="log-container col-left">
+        <section>
+            <div className="workout-container">
+            <div className=" workout-log col-left">
                 <div className="top">
                     <h3 className="h1-2">{selectedDate.toDateString()}</h3>
                     <h3 className="h1-2">Workout Log:</h3>
@@ -54,19 +55,21 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
                         <button className="workout-btn" onClick={handleClick}><FontAwesomeIcon icon={faPlusSquare} size="2xl"/></button>
                     )}
                     {action && <WorkoutForm onFormClose={handleFormClose} selectedDate={selectedDate}/>}
-                    </div>
-                    <div className="bottom">
-                        <button className="btn bottom-btn">edit</button>
-                    </div>
-
                 </div>
+                <div className="bottom">
+                    <button className="btn bottom-btn">edit</button>
+                </div>
+
+            </div>
             <div className="col-right">
                 <Calendar currentDate={selectedDate} onDateSelection={onCalendarChange}/>
                 <div className="right-box">
                     <div className="in-box"></div>
                 </div>
             </div>
-            </div>
+        </div>
+        </section>
+
 
     );
 }
