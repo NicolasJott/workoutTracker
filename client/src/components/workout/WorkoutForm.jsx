@@ -11,24 +11,22 @@ const WorkoutForm = ({ addWorkout, onFormClose, selectedDate }) => {
     const [fields, errors, form] = useFormInputValidation({
         workoutType: '',
         workout: '',
-        sets: '',
-        reps: '',
+        numSets: '',
         time: '',
         calories: '',
     } , {
         workoutType: "required",
         workout: "required",
         sets: 'required',
-        reps: 'required',
         time: '',
         calories: '',
     });
 
-    const { workoutType, workout, sets, reps, time, calories } = fields
+    const { workoutType, workout, numSets, time, calories } = fields
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await addWorkout( { workoutType, workout, sets, reps, time, calories, selectedDate } )
+        await addWorkout( { workoutType, workout, numSets, time, calories, selectedDate } )
         onFormClose();
     }
 
@@ -63,21 +61,12 @@ const WorkoutForm = ({ addWorkout, onFormClose, selectedDate }) => {
                                 />
                             <input
                                 type='text'
-                                placeholder={errors.sets ? errors.sets : "Number of Sets"}
-                                name='sets'
-                                value={fields.sets}
+                                placeholder={errors.numSets ? errors.numSets : "Number of Sets"}
+                                name='numSets'
+                                value={fields.numSets}
                                 onChange={form.handleChangeEvent}
                                 onBlur={form.handleBlurEvent}
                                 required
-                            />
-                            <input
-                            type='text'
-                            placeholder={errors.reps ? errors.reps : "Number of Reps"}
-                            name='reps'
-                            value={fields.reps}
-                            onChange={form.handleChangeEvent}
-                            onBlur={form.handleBlurEvent}
-                            required
                             />
                                 </>
                         ) : (workoutType === 'Cardio') ? (

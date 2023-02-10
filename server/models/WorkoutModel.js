@@ -1,8 +1,8 @@
-const mongoose = require("mongoose")
-const {Schema} = require("mongoose");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 
-const userSchema = new mongoose.Schema({
+const WorkoutSchema = new mongoose.Schema({
     user:{
         type: Schema.Types.ObjectId,
         ref: 'users'
@@ -15,12 +15,16 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    sets: {
+    numSets: {
         type: String,
     },
-    reps: {
-        type: String
-    },
+    sets: [
+        {
+        reps: { type: String },
+        weight: { type: String },
+        comment: { type: String },
+    }
+    ],
     time: {
         type: String
     },
@@ -35,4 +39,4 @@ const userSchema = new mongoose.Schema({
 });
 
 
-module.exports = mongoose.model("workout_logs", userSchema)
+module.exports = Workout = mongoose.model("workout_logs", WorkoutSchema);

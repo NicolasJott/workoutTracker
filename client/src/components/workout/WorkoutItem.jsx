@@ -1,15 +1,23 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import WorkoutCompletion from "./WorkoutCompletion";
 
-const WorkoutItem = ({ auth, workout: { workoutType, workout, sets, reps, time, calories } }) => {
+const WorkoutItem = ({ auth, workout: { workoutType, workout, numSets, time, calories } }) => {
 
     if (workoutType === "Weight Lifting") {
         return (
             <div className="log-item">
             <h1 className="workout-item">{workout}</h1>
-            <h4 className="workout-item">{sets} sets</h4>
-            <h4 className="workout-item">{reps} reps</h4>
+            <h4 className="workout-item">{numSets} sets</h4>
+                <div>
+                    {Array.from({ length: numSets }, (_, i) => (
+                        <div key={i}>
+                            <h4 className="workout-item">Set {i + 1}:</h4>
+                            <WorkoutCompletion />
+                        </div>
+                    ))}
+                </div>
             <hr/>
         </div>
         )

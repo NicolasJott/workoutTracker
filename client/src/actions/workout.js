@@ -28,14 +28,14 @@ export const getWorkouts = (selectedDate) => async (dispatch) => {
 };
 
 
-export const addWorkout = ({ workoutType, workout, sets, reps, time, calories, selectedDate }) => async (dispatch) => {
+export const addWorkout = ({ workoutType, workout, numSets, time, calories, selectedDate }) => async (dispatch) => {
 
     const date = selectedDate.toLocaleDateString("en-US", {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
     });
-    const body = { workoutType, workout, sets, reps, time, calories, date };
+    const body = { workoutType, workout, numSets, time, calories, date };
 
     try {
         const res = await api.post('/workout', body);

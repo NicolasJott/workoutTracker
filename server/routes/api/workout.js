@@ -18,17 +18,16 @@ router.post(
         if (!errors.isEmpty())
             return res.status(400).json({ errors: errors.array() });
 
-        const { workoutType, workout, sets, reps, time, calories, date } = req.body;
+        const { workoutType, workout, numSets, time, calories, date } = req.body;
 
         try {
             const user = await User.findById(req.user.id).select('-password');
 
             let newWorkout = new Workout({
-                user: req.user.id,
+                user: user.id,
                 workoutType,
                 workout,
-                sets,
-                reps,
+                numSets,
                 time,
                 calories,
                 date,

@@ -554,3 +554,15 @@ i:hover {
   background: azure;
   height: 392px;
 }
+
+#workout-comment {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#workout-comment > input {
+  border: none;
+  padding: 5px;
+  background: azure;
+}

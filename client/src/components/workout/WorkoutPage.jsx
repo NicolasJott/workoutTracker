@@ -26,6 +26,7 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
 
     const handleFormClose = () => {
         setAction(false)
+        getWorkouts(today);
     }
 
     const onCalendarChange = (date) => {
@@ -46,7 +47,7 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
                     <h3 className="h1-2">Workout Log:</h3>
                 </div>
                 <div className="logs">
-                    {workouts.reverse().map((workout) => (
+                    {workouts.map((workout) => (
                         <WorkoutItem key={workout._id} workout={workout}/>
                     ))}
                     {!action && (
