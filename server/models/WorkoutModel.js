@@ -19,7 +19,6 @@ const WorkoutSchema = new mongoose.Schema({
         type: String,
     },
     set_items: [{
-        index_num: String,
         reps: String,
         weight: String,
         comment: String,

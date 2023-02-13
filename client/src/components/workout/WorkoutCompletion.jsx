@@ -16,6 +16,10 @@ const WorkoutCompletion = ({ indexNum, workoutId, addSet, getSet } ) => {
         setSubmitted(true);
     }
 
+    useEffect(() => {
+        getSet(indexNum, workoutId);
+        setSubmitted(true)
+    }, [getSet])
 
     return (
         <form id="workout-comment" onSubmit={handleSubmit}>

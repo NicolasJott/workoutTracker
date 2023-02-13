@@ -88,9 +88,8 @@ router.post('/set/:id', auth, async (req, res) => {
 
 router.get('/set/:id/', auth, async(req, res) => {
     try{
-        const workout = await Workout.find({"_id": req.params.id });
+        const workout = await Workout.findOne( {_id: req.params.id} ) ;
         const i = req.query.index;
-
         res.json(workout.set_items[i])
 
     } catch (err) {

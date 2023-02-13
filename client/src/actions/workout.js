@@ -83,7 +83,7 @@ export const addSet = ({ index_num, reps, weight, comment}, workoutId) => async 
 
 export const getSet = (index_num, workoutId) => async (dispatch) => {
     try{
-        const res = await api.post(`/workout/set/${workoutId}?index=${index_num}`)
+        const res = await api.get(`/workout/set/${workoutId}?index=${index_num}`)
 
         dispatch({
             type: GET_SET,
