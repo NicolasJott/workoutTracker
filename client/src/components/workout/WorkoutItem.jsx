@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import WorkoutCompletion from "./WorkoutCompletion";
 
-const WorkoutItem = ({ auth, workout: { workoutType, workout, numSets, time, calories } }) => {
-
+const WorkoutItem = ({ auth, workout: { _id, workoutType, workout, numSets, time, calories } }) => {
     if (workoutType === "Weight Lifting") {
         return (
             <div className="log-item">
@@ -14,7 +13,7 @@ const WorkoutItem = ({ auth, workout: { workoutType, workout, numSets, time, cal
                     {Array.from({ length: numSets }, (_, i) => (
                         <div key={i}>
                             <h4 className="workout-item">Set {i + 1}:</h4>
-                            <WorkoutCompletion />
+                            <WorkoutCompletion indexNum={i} workoutId={_id}/>
                         </div>
                     ))}
                 </div>

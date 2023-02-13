@@ -406,8 +406,7 @@ i:hover {
   min-width: 40vw ;
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: 60vh;
-  min-height: 40vh;
+  min-height: auto;
   padding: 20px;
   scrollbar-gutter: stable;
   position: relative;
@@ -566,6 +565,12 @@ i:hover {
   border: none;
   padding: 5px;
   background: azure;
+}
+
+#workout-comment > p {
+  font-weight: 600;
+  font-size: 14px;
+  color: black;
 }
 
 .workout-log {

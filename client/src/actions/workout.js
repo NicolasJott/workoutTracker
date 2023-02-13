@@ -1,5 +1,5 @@
 import api from '../utils/api';
-import {ADD_WORKOUT, GET_WORKOUTS, LOG_ERROR} from "./types";
+import {ADD_SET, ADD_WORKOUT, GET_SET, GET_WORKOUTS, LOG_ERROR} from "./types";
 import {setAlert} from "./alert";
 
 export const getWorkouts = (selectedDate) => async (dispatch) => {
@@ -56,3 +56,47 @@ export const addWorkout = ({ workoutType, workout, numSets, time, calories, sele
         });
     }
 };
+
+export const addSet = ({ index_num, reps, weight, comment}, workoutId) => async (dispatch) => {
+
+    const body = { index_num, reps, weight, comment };
+
+    try {
+        const res = await api.post(`/workout/set/${workoutId}`, body);
+
+        dispatch({
+            type: ADD_SET,
+            payload: res.data,
+        });
+
+        dispatch(setAlert('Set Added', 'success'));
+    } catch (err) {
+        dispatch({
+            type: LOG_ERROR,
+            payload: {
+                msg: err.response.statusText,
+                status: err.response.status,
+            },
+        });
+    }
+}
+
+export const getSet = (index_num, workoutId) => async (dispatch) => {
+    try{
+        const res = await api.post(`/workout/set/${workoutId}?index=${index_num}`)
+
+        dispatch({
+            type: GET_SET,
+            payload: res.data,
+        });
+
+    } catch (err) {
+        dispatch({
+            type: LOG_ERROR,
+            payload: {
+                msg: err.response.statusText,
+                status: err.response.status,
+            },
+        });
+    }
+}

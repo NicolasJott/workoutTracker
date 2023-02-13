@@ -16,6 +16,8 @@ export const LOG_ERROR = 'LOG_ERROR';
 export const ADD_WORKOUT = 'ADD_WORKOUT';
 export const GET_WORKOUTS = 'GET_WORKOUTS';
 export const GET_WORKOUT = 'GET_WORKOUT';
+export const ADD_SET = 'ADD_SET';
+export const GET_SET = 'GET_SET';
 
 
 export const ACCOUNT_DELETED = 'ACCOUNT_DELETED';

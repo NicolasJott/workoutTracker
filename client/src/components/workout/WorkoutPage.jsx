@@ -12,9 +12,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
-    const { id } = useParams();
     const [action, setAction] = useState(false);
-    const [active, setActive] = useState(false);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const today = new Date()
 
@@ -49,15 +47,13 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
                 </div>
                 <div className="logs">
                     {workouts.map((workout) => (
-                        <WorkoutItem key={workout._id} workout={workout}/>
+                        <WorkoutItem workoutId={workout._id} workout={workout}/>
+
                     ))}
                     {!action && (
                         <button className="workout-btn" onClick={handleClick}><FontAwesomeIcon icon={faPlusSquare} size="2xl"/></button>
                     )}
                     {action && <WorkoutForm onFormClose={handleFormClose} selectedDate={selectedDate}/>}
-                </div>
-                <div className="bottom">
-                    <button className="btn bottom-btn">edit</button>
                 </div>
 
             </div>

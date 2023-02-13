@@ -18,13 +18,12 @@ const WorkoutSchema = new mongoose.Schema({
     numSets: {
         type: String,
     },
-    sets: [
-        {
-        reps: { type: String },
-        weight: { type: String },
-        comment: { type: String },
-    }
-    ],
+    set_items: [{
+        index_num: String,
+        reps: String,
+        weight: String,
+        comment: String,
+    }],
     time: {
         type: String
     },
@@ -39,4 +38,4 @@ const WorkoutSchema = new mongoose.Schema({
 });
 
 
-module.exports = Workout = mongoose.model("workout_logs", WorkoutSchema);
+module.exports = Workout = mongoose.model("workout", WorkoutSchema);

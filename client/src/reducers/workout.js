@@ -3,6 +3,8 @@ import {
     LOG_ERROR,
     ADD_WORKOUT,
     GET_WORKOUT,
+    ADD_SET,
+    GET_SET,
 
 } from "../actions/types";
 
@@ -39,6 +41,17 @@ const workoutReducer = ( state = initialState, action) => {
             return {
                 ...state,
                 error: payload,
+                loading: false,
+            }
+        case ADD_SET:
+            return {
+                ...state,
+                workout: { ...state.workout, sets: payload},
+                loading: false,
+            }
+        case GET_SET:
+            return {
+                workout: payload,
                 loading: false,
             }
         default:
