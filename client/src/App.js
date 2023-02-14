@@ -1,6 +1,7 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Headers/Header";
+import Sidebar from "./components/Headers/Sidebar";
 import Home from "./components/Home";
 import MealTracker from "./components/MealTracker";
 import Register from "./components/Register";
@@ -41,6 +42,7 @@ function App() {
       <Provider store={store}>
           <BrowserRouter>
               <Header/>
+              <Sidebar/>
               <Alert/>
               <Routes>
                   <Route path="/" element={<Home />} />

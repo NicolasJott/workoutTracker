@@ -2,76 +2,50 @@ import {Link } from "react-router-dom";
 import {logout} from "../../actions/auth";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {faUserCircle, faBars} from "@fortawesome/free-solid-svg-icons";
+import {faBars} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import React, {useEffect, useState} from "react";
+import React from "react";
 
 
 const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    useEffect(() => {
-        const closeMenu = () => {
-            setIsMenuOpen(false);
-        };
-
-        // Close the menu when a link is clicked or when the user clicks outside the menu
-        document.addEventListener("click", closeMenu);
-        return () => {
-            document.removeEventListener("click", closeMenu);
-        };
-    }, []);
-
-    const toggleMenu = (e) => {
-        e.stopPropagation();
-        setIsMenuOpen(!isMenuOpen);
-    };
-
-    const authVisible = (
-        <div className="navMenu">
-            <Link to="/">Home</Link>
-            <Link to="/workout">Workout</Link>
-            <Link to="/meal">Calorie Tracker</Link>
-            <button className="navbtn" onClick={logout}>
-                <FontAwesomeIcon icon={faUserCircle} size="2xl" /> Hello, {user && user.firstName}!
-            </button>
-        </div>
-    );
-
-    const authVisibleSmall = (
-        <div className="nav-dropdown">
-            <Link to="/">Home</Link>
-            <Link to="/workout">Workout</Link>
-            <Link to="/meal">Calorie Tracker</Link>
-            <Link to="/login" onClick={logout}>
-                Logout
-            </Link>
-        </div>
-    )
-
-    const guestVisible = (
-        <div className="navMenu">
-            <Link to="/login">Login</Link>
-        </div>
-    );
-
+    function toggleSidebar(){
+        const sidebar = document.querySelector('.sidebarContainer')
+        sidebar.classList.toggle('open');
+    }
     return (
-        <div className="nav-center">
-            <header>
-                <h1 className="logo">FitnessTrack</h1>
-                {isAuthenticated ? authVisible : guestVisible}
-                {isMenuOpen && (
-                    <div className="dropdown">
-                        {isAuthenticated ? authVisibleSmall : guestVisible}
+        <div className="nav">
+            <div className="navBarContainer">
+                <h1 className="logo">FitnessTracker</h1>
+                <div className="mobileIcon">
+                    <FontAwesomeIcon icon={faBars} onClick={toggleSidebar}/>
+                </div>
+                {isAuthenticated && (
+                    <div className="navMenu">
+                        <div className="navItem">
+                            <Link to={'/'}>Home</Link>
+                        </div>
+                        <div className="navItem">
+                            <Link to={'/workout'}>Workout</Link>
+                        </div>
+                        <div className="navItem">
+                            <Link to={'/meal'}>Calorie</Link>
+                        </div>
                     </div>
                 )}
-                <button className="nav-toggle" onClick={toggleMenu}>
-                    <FontAwesomeIcon icon={faBars} />
-                </button>
-            </header>
+                <div className="navBtn">
+                    {!isAuthenticated ? (
+                        <Link to={'/login'}>Sign In</Link>
+                    ) : (
+                        <Link to={'/login'} onClick={logout}>Log Out</Link>
+                    )}
+
+                </div>
+            </div>
         </div>
     );
-};
+}
+
 
 Header.propTypes = {
     logout: PropTypes.func.isRequired,

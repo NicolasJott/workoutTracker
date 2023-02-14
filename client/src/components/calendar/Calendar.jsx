@@ -2,7 +2,7 @@ import {formatDate, getDaysInMonth} from "../../utils/formatData";
 import {useEffect, useState} from "react";
 
 
-export const Calendar = ({ currentDate, onDateSelection }) => {
+export const Calendar = ({ currentDate, onDateSelection, onCalendarClose }) => {
 
     const date = new Date();
     const [monthNumber, setMonthNumber]  = useState(date.getMonth())
@@ -14,6 +14,7 @@ export const Calendar = ({ currentDate, onDateSelection }) => {
     const handleDaySelection = (day) => {
         setSelectedDay(day);
         onDateSelection(new Date(currentDate.getFullYear(), monthNumber, day))
+        onCalendarClose();
     }
 
     const nextMonth = () => {

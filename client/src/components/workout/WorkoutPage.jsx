@@ -13,6 +13,7 @@ const today = new Date()
 
 const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
     const [action, setAction] = useState(false);
+    const [active, setActive] = useState(false);
     const [selectedDate, setSelectedDate] = useState(today);
 
 
@@ -25,6 +26,14 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
     const handleFormClose = () => {
         setAction(false)
         getWorkouts(today);
+    }
+
+    const handleCalendarOpen = () => {
+        setActive(true)
+    }
+
+    const handleCalendarClose = () => {
+        setActive(false)
     }
 
     const onCalendarChange = (date) => {
@@ -41,21 +50,26 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
         <section>
             <div className="workout-container">
             <div className=" workout-log col-left">
-                <div className="top">
-                    <h3 className="h1-2">{selectedDate.toDateString()}</h3>
-                    <h3 className="h1-2">Workout Log:</h3>
-                </div>
-                <div className="logs">
-                    { workouts && workouts.length > 0 && workouts.map((workout) => (
-                        <WorkoutItem workoutId={workout._id} workout={workout}/>
+                {!active ? (
+                    <>
+                        <div className="top">
+                            <h3 className="h1-2 pointer" onClick={handleCalendarOpen}>{selectedDate.toDateString()}</h3>
+                            <h3 className="h1-2">Workout Log:</h3>
+                        </div>
+                        <div className="logs">
+                            { workouts && workouts.length > 0 && workouts.map((workout) => (
+                                <WorkoutItem workoutId={workout._id} workout={workout}/>
 
-                    ))}
-                    {!action && (
-                        <button className="workout-btn" onClick={handleClick}><FontAwesomeIcon icon={faPlusSquare} size="2xl"/></button>
-                    )}
-                    {action && <WorkoutForm onFormClose={handleFormClose} selectedDate={selectedDate}/>}
-                </div>
-
+                            ))}
+                            {!action && (
+                                <button className="workout-btn" onClick={handleClick}><FontAwesomeIcon icon={faPlusSquare} size="2xl"/></button>
+                            )}
+                            {action && <WorkoutForm onFormClose={handleFormClose} selectedDate={selectedDate}/>}
+                        </div>
+                    </>
+                ) : (
+                    <Calendar currentDate={selectedDate} onCalendarClose={handleCalendarClose} onDateSelection={onCalendarChange}/>
+                )}
             </div>
             <div className="col-right">
                 <Calendar currentDate={selectedDate} onDateSelection={onCalendarChange}/>
