@@ -2,14 +2,20 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import WorkoutCompletion from "./WorkoutCompletion";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faPlusSquare, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {deleteWorkout} from "../../actions/workout";
+import React, {useState} from "react";
 
-const WorkoutItem = ({ auth, deleteWorkout, workout: { _id, workoutType, workout, set_items, numSets, time, calories } }) => {
+const WorkoutItem = ({ auth, deleteWorkout,  workout: { _id, workoutType, numSets, workout, set_items, time, calories } }) => {
 
+    const [sets, setSets] = useState(numSets)
 
     const handleDelete = () => {
         deleteWorkout(_id)
+    }
+
+    const handleAddSet = () => {
+        setSets(sets + 1);
     }
 
     if (workoutType === "Weight Lifting") {
@@ -20,9 +26,9 @@ const WorkoutItem = ({ auth, deleteWorkout, workout: { _id, workoutType, workout
                     <button className="delete-btn" onClick={handleDelete}><FontAwesomeIcon icon={faTrash}/></button>
                 </div>
 
-            <h4 className="workout-item">{numSets} sets</h4>
+            <h4 className="workout-item">{sets} sets</h4>
                 <div>
-                    {Array.from({ length: numSets }, (_, i) => (
+                    {Array.from({ length: sets }, (_, i) => (
                         <div key={i}>
                             <h4 className="workout-item">Set {i + 1}:</h4>
                             {set_items[i] ? (
@@ -36,6 +42,9 @@ const WorkoutItem = ({ auth, deleteWorkout, workout: { _id, workoutType, workout
                             )}
                         </div>
                     ))}
+                    <div className="add-set">
+                        <button className="add-set-btn" onClick={handleAddSet} ><FontAwesomeIcon icon={faPlusSquare} size="sm"/><p> Add Set </p></button>
+                    </div>
                 </div>
             <hr/>
         </div>

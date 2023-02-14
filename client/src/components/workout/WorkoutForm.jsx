@@ -34,8 +34,6 @@ const WorkoutForm = ({ addWorkout, onFormClose, selectedDate }) => {
 
                 <div className="col-1">
                     <span className="exit-button"><FontAwesomeIcon icon={faX} onClick={onFormClose} /></span>
-
-
                     <form id="workoutForm" className="flex flex-col" onSubmit={handleSubmit} >
                         <select
                             value={workoutType}
@@ -69,7 +67,7 @@ const WorkoutForm = ({ addWorkout, onFormClose, selectedDate }) => {
                                 required
                             />
                                 </>
-                        ) : (workoutType === 'Cardio') ? (
+                        ) : (workoutType === 'Cardio') && (
                             <>
                                 <input
                                     type='text'
@@ -95,12 +93,7 @@ const WorkoutForm = ({ addWorkout, onFormClose, selectedDate }) => {
                             onChange={form.handleChangeEvent}
                             />
                             </>
-                        ) : (
-                            <div></div>
-                        )
-                        }
-
-
+                        )}
                         <button className="btn">Add Workout</button>
                     </form>
                 </div>

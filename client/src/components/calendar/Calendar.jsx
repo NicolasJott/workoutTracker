@@ -1,5 +1,7 @@
 import {formatDate, getDaysInMonth} from "../../utils/formatData";
 import {useEffect, useState} from "react";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 export const Calendar = ({ currentDate, onDateSelection, onCalendarClose }) => {
@@ -40,6 +42,9 @@ export const Calendar = ({ currentDate, onDateSelection, onCalendarClose }) => {
     return(
         <div className="calendar">
             <div className="calendar__picture">
+                <div className="close-calendar">
+                    <FontAwesomeIcon icon={faClose} onClick={onCalendarClose}/>
+                </div>
                 <h2>{selectedDay} , {weekday} {year} </h2>
                 <div className="calendar-month">
                     <i className="fa fa-fw fa-chevron-left" onClick={prevMonth}></i>

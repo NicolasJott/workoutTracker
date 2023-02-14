@@ -6,7 +6,7 @@ import  WorkoutItem  from './WorkoutItem'
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import { faPlusSquare, faCalendar } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const today = new Date()
@@ -41,6 +41,7 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
         getWorkouts(date)
     };
 
+
     useEffect(() =>{
         getWorkouts(today);
     }, [getWorkouts]);
@@ -53,12 +54,20 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
                 {!active ? (
                     <>
                         <div className="top">
-                            <h3 className="h1-2 pointer" onClick={handleCalendarOpen}>{selectedDate.toDateString()}</h3>
+                            <h3 className="h1-2" >{selectedDate.toDateString()}</h3>
+                            <div className="calendarIcon">
+                                <FontAwesomeIcon icon={faCalendar} size="2xl" onClick={handleCalendarOpen}/>
+                            </div>
+
                             <h3 className="h1-2">Workout Log:</h3>
                         </div>
                         <div className="logs">
                             { workouts && workouts.length > 0 && workouts.map((workout) => (
-                                <WorkoutItem workoutId={workout._id} workout={workout}/>
+                                <>
+                                    <WorkoutItem workoutId={workout._id} workout={workout} />
+
+                                </>
+
 
                             ))}
                             {!action && (

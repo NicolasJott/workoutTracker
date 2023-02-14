@@ -1,8 +1,6 @@
 import {useState} from "react";
 import {connect} from "react-redux";
 import { addSet, getSet } from "../../actions/workout";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSave} from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 
 const WorkoutCompletion = ({ indexNum, workoutId, addSet, getSet } ) => {
@@ -45,7 +43,7 @@ const WorkoutCompletion = ({ indexNum, workoutId, addSet, getSet } ) => {
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                     />
-                    <button className="save-btn"><FontAwesomeIcon icon={faSave}/></button>
+                    {/*<button className="save-btn"><FontAwesomeIcon icon={faSave}/></button>*/}
                 </>
             ) : (
                 <>

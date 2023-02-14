@@ -4,9 +4,12 @@
 }
 
 body {
+
   background: #0f0c29;
   background: -webkit-linear-gradient(to left, #24243e, #302b63, #0f0c29);
   background: linear-gradient(to left, #24243e, #302b63, #0f0c29);
+
+
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -84,8 +87,9 @@ code {
 
 }
 
-.navItem a:active {
+.navItem a:hover {
   border-bottom: 3px solid azure;
+  transition: 250ms linear;
 }
 
 .navBtn {
@@ -777,7 +781,59 @@ i:hover {
   transition: 250ms;
 }
 
+.add-set {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.add-set-btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.calendarIcon {
+  display: flex;
+  flex-direction: column;
+  color: azure;
+  cursor: pointer;
+}
+
+.calendarIcon:hover {
+  transition: var(--transition);
+  color: #e9ecef;
+}
+
+.close-calendar {
+  display: flex;
+  flex-direction: row;
+  justify-self: flex-end;
+  cursor: pointer;
+}
+
+.close-calendar:hover {
+  transition: var(--transition);
+  color: #e9ecef;
+}
+
+.add-set-btn p {
+  color: black;
+  padding: 5px;
+}
+
 @media (min-width: 900px) {
+
+  .close-calendar {
+    display: none;
+  }
+
+  .calendarIcon {
+    display: none;
+  }
 
   .col-right {
     display: flex;
