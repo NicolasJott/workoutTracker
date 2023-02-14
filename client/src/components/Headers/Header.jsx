@@ -43,9 +43,9 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
             <Link to="/">Home</Link>
             <Link to="/workout">Workout</Link>
             <Link to="/meal">Calorie Tracker</Link>
-            <button onClick={logout}>
+            <Link to="/login" onClick={logout}>
                 Logout
-            </button>
+            </Link>
         </div>
     )
 
