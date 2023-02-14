@@ -1,6 +1,8 @@
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import {connect} from "react-redux";
 import { addSet, getSet } from "../../actions/workout";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSave} from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 
 const WorkoutCompletion = ({ indexNum, workoutId, addSet, getSet } ) => {
@@ -16,10 +18,7 @@ const WorkoutCompletion = ({ indexNum, workoutId, addSet, getSet } ) => {
         setSubmitted(true);
     }
 
-    useEffect(() => {
-        getSet(indexNum, workoutId);
-        setSubmitted(true)
-    }, [getSet])
+
 
     return (
         <form id="workout-comment" onSubmit={handleSubmit}>
@@ -46,7 +45,7 @@ const WorkoutCompletion = ({ indexNum, workoutId, addSet, getSet } ) => {
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                     />
-                    <button className="btn"> save </button>
+                    <button className="save-btn"><FontAwesomeIcon icon={faSave}/></button>
                 </>
             ) : (
                 <>

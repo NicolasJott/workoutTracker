@@ -1,5 +1,5 @@
 import api from '../utils/api';
-import {ADD_SET, ADD_WORKOUT, GET_SET, GET_WORKOUTS, LOG_ERROR} from "./types";
+import {ADD_SET, ADD_WORKOUT, DELETE_WORKOUT, GET_SET, GET_WORKOUTS, LOG_ERROR} from "./types";
 import {setAlert} from "./alert";
 
 export const getWorkouts = (selectedDate) => async (dispatch) => {
@@ -56,6 +56,27 @@ export const addWorkout = ({ workoutType, workout, numSets, time, calories, sele
         });
     }
 };
+
+export const deleteWorkout = (id) => async (dispatch) => {
+    try {
+        await api.delete(`/workout/${id}`);
+
+        dispatch({
+            type: DELETE_WORKOUT,
+            payload: id,
+        });
+
+        dispatch(setAlert('Post Removed', 'success'));
+    } catch (err) {
+        dispatch({
+            type: LOG_ERROR,
+            payload: {
+                msg: err.response.statusText,
+                status: err.response.status,
+            }
+        })
+    }
+}
 
 export const addSet = ({ index_num, reps, weight, comment}, workoutId) => async (dispatch) => {
 

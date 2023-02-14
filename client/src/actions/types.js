@@ -18,7 +18,7 @@ export const GET_WORKOUTS = 'GET_WORKOUTS';
 export const GET_WORKOUT = 'GET_WORKOUT';
 export const ADD_SET = 'ADD_SET';
 export const GET_SET = 'GET_SET';
-
+export const DELETE_WORKOUT = 'DELETE_WORKOUT';
 
 export const ACCOUNT_DELETED = 'ACCOUNT_DELETED';
 

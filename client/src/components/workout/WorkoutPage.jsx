@@ -5,16 +5,16 @@ import { getWorkouts } from "../../actions/workout";
 import  WorkoutItem  from './WorkoutItem'
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {useParams} from "react-router-dom";
 
 import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
+const today = new Date()
 
 const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
     const [action, setAction] = useState(false);
-    const [selectedDate, setSelectedDate] = useState(new Date());
-    const today = new Date()
+    const [selectedDate, setSelectedDate] = useState(today);
+
 
 
 
@@ -46,7 +46,7 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
                     <h3 className="h1-2">Workout Log:</h3>
                 </div>
                 <div className="logs">
-                    {workouts.map((workout) => (
+                    { workouts && workouts.length > 0 && workouts.map((workout) => (
                         <WorkoutItem workoutId={workout._id} workout={workout}/>
 
                     ))}

@@ -58,6 +58,23 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
+router.delete('/:id', auth, async (req, res) => {
+    try {
+        const workout = await Workout.findById(req.params.id);
+
+        if (workout.user.toString() !== req.user.id) {
+            return res.status(401).json({ msg: 'User not authorized'});
+        }
+
+        await workout.remove();
+
+        res.json({ msg: 'Workout Removed '});
+    } catch (err) {
+        console.error(err.message)
+        res.status(500).send('Server Error');
+    }
+});
+
 router.post('/set/:id', auth, async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty())
