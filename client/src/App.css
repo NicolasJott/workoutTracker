@@ -1,3 +1,8 @@
+:root {
+  --transition: all 0.3s linear;
+  --spacing: 0.1rem;
+}
+
 body {
   background: #0f0c29;
   background: -webkit-linear-gradient(to left, #24243e, #302b63, #0f0c29);
@@ -17,28 +22,21 @@ code {
 
 header {
   display: flex;
-  max-height: 90px;
   align-items: center;
   justify-content: space-between;
-  z-index: 1;
-  padding: 0 20px;
-  top: 0;
-  left: 0;
-  right: 0;
+  padding: 1rem;
 
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 40px;
 }
 
 .navMenu {
-  display: flex;
+  height: 0;
+  display: none;
+  transition: var(--transition);
   align-items: center;
-  flex: 1;
-  justify-content: center;
 
 }
 
@@ -58,15 +56,33 @@ header {
   transition: 250ms;
 }
 
-.navMenu a {
-  padding: 0 80px;
-  font-weight: 600;
-  flex-wrap: nowrap;
-  font-size: 14px;
+.nav-dropdown {
+  display: flex;
+  flex-direction: column;
+}
 
+.nav-dropdown button {
+  border:none;
+  background: none;
+  margin: 1rem 0;
+  color: black;
 
 }
 
+.navMenu a {
+  color: azure;
+  font-size: 1rem;
+  text-transform: capitalize;
+  letter-spacing: var(--spacing);
+  display: block;
+  padding: 0.5rem 1rem;
+  transition: var(--transition);
+
+}
+
+.rightMenu {
+  display: none;
+}
 
 .rightMenu a {
   font-weight: 600;
@@ -75,10 +91,14 @@ header {
   font-size: 14px;
 }
 
+.nav {
+  display: flex;
+}
+
 a {
   text-decoration: none;
-  color: azure;
-  letter-spacing: 1.5px;
+  color: black;
+  letter-spacing: var(--spacing);
 
 }
 
@@ -91,6 +111,94 @@ a {
 .rightMenu a:hover {
   color: gray;
   transition: ease-in 200ms;
+}
+
+
+
+.nav-menu-open a {
+  color: black;
+  padding: 10px;
+}
+
+.nav-toggle {
+  color: azure;
+  font-size: 1.5rem;
+  background: transparent;
+  border-color: transparent;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.dropdown {
+  position: fixed;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  z-index: 10;
+}
+
+.dropdown a {
+  margin: 1rem 0;
+  color: black;
+}
+
+.nav-toggle:hover {
+  color: lightblue;
+  transform: rotate(90deg);
+}
+
+.link-height {
+  height: 10rem;
+}
+
+
+
+@media (min-width: 800px) {
+  .nav-center {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+
+  header {
+    padding: 0;
+  }
+
+  .navMenu {
+    height: auto;
+    display: flex;
+    flex: 1;
+
+  }
+
+  .navMenu a {
+    padding: 0 5rem;
+    margin: 0 0.5rem;
+    font-weight: 600;
+    flex-wrap: nowrap;
+    font-size: 14px;
+  }
+
+  .rightMenu {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-menu-open {
+    display: none;
+  }
 }
 
 h1 {
@@ -172,6 +280,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 }
 
 .register {
@@ -562,7 +671,7 @@ i:hover {
 }
 
 #workout-comment > input {
-  border: none;
+  border: 1px solid gray;
   padding: 5px;
   background: azure;
 }
@@ -578,3 +687,43 @@ i:hover {
   border-radius: 10px;
   margin: 0 50px 0 0;
 }
+
+.saved-set {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.saved-set p {
+  color: black;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.save-btn {
+  background: none;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  width: 25px;
+}
+
+.workout-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  width: 25px;
+}
+
+.delete-btn:hover {
+  color: red;
+  transition: 250ms;
+}
+
