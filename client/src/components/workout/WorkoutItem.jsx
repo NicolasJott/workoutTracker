@@ -56,10 +56,9 @@ const WorkoutItem = ({ auth, deleteWorkout, addSet,  workout: { _id, workoutType
                         </div>
                     ))}
                     <div className="add-set">
-                        <button className="add-set-btn" onClick={handleAddSet} ><FontAwesomeIcon icon={faPlusSquare} size="sm"/><p> Add Set </p></button>
+                        <button className="add-set-btn" onClick={handleAddSet} ><FontAwesomeIcon icon={faPlusSquare} size="sm"/></button><p> Add Set </p>
                     </div>
                 </div>
-            <hr/>
         </div>
         )
     }

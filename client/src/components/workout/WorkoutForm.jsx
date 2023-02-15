@@ -31,7 +31,6 @@ const WorkoutForm = ({ addWorkout, onFormClose, selectedDate }) => {
     }
 
     return(
-
                 <div className="col-1">
                     <span className="exit-button"><FontAwesomeIcon icon={faX} onClick={onFormClose} /></span>
                     <form id="workoutForm" className="flex flex-col" onSubmit={handleSubmit} >

@@ -3,11 +3,13 @@
   --spacing: 0.1rem;
 }
 
+html {
+  height: 100%;
+}
+
 body {
 
-  background: #0f0c29;
-  background: -webkit-linear-gradient(to left, #24243e, #302b63, #0f0c29);
-  background: linear-gradient(to left, #24243e, #302b63, #0f0c29);
+  background: #262626;
 
 
   margin: 0;
@@ -37,7 +39,7 @@ code {
   font-size: 1rem;
   top: 0;
   z-index: 10;
-
+  /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }
 
 .navBarContainer {
@@ -87,10 +89,11 @@ code {
 
 }
 
-.navItem a:hover {
-  border-bottom: 3px solid azure;
+.navItem:hover {
+  border-bottom: 3px solid #ff5047;
   transition: 250ms linear;
 }
+
 
 .navBtn {
   display: flex;
@@ -99,7 +102,7 @@ code {
 
 .navBtn a {
   border-radius: 50px;
-  background: darkslateblue;
+  background: #ff5047;
   white-space: nowrap;
   padding: 10px 22px;
   color: azure;
@@ -125,9 +128,15 @@ code {
     position: absolute;
     top:0;
     right:0;
-    transform: translate(-100%, 60%);
+    margin: 20px 20px 0 0 ;
+    transition: var(--transition);
+
     font-size: 1.8rem;
     cursor: pointer;
+  }
+
+  .mobileIcon:hover {
+    transform: rotate(90deg);
   }
 
   .navMenu {
@@ -152,20 +161,21 @@ code {
 .sidebarContainer {
   position: fixed;
   z-index: 999;
-  width: 100%;
+  width: 50%;
   height: 100%;
-  background: #262626;
+  background: #1c1c1c;
   display: grid;
   align-items: center;
-  left: 0;
+  right: 0;
+  top: 0;
   transition: 0.3s ease-in-out;
   opacity: 0;
-  top: -100%;
+  right: -100%;
 }
 
 .sidebarContainer.open {
   opacity: 1;
-  top: 0;
+  right: 0;
 }
 
 .icon {
@@ -203,7 +213,7 @@ code {
 }
 
 .sidebarMenu a:hover {
-  color: #01bf71;
+  color: #ff5047;
   transition: 0.2s ease-in-out;
 }
 
@@ -214,7 +224,7 @@ code {
 
 .sideBtnWrap a {
   border-radius: 50px;
-  background: darkslateblue;
+  background: #ff5047;
   white-space: nowrap;
   padding: 10px 22px;
   color: #010606;
@@ -340,15 +350,18 @@ input {
   border-radius: 5px;
   width: 100vw;
   display: flex;
-  border: 1px solid #e9ecef;
-  box-shadow: 1px 3px 10px #e9ecef;
-  background-color: azure;
+  box-shadow: 1px 3px 10px #1c1c1c;
+  background-color: #181818;
 }
 
 .register a {
-  color: #003049;
+  color: white;
   letter-spacing: normal;
   text-decoration: underline;
+}
+
+.col-1 h2 {
+  color: white;
 }
 
 #form {
@@ -385,17 +398,21 @@ input {
 
 #authForm>input,
 .btn {
-  border: 1px solid #e9ecef;
+  border: none;
   padding: .9em 1em;
-  background-color: azure;
+  background-color: #2f2f2f;
+  color: white;
 }
+
 
 #authForm>input:focus {
   outline: none;
+  color: white;
+  background: #2f2f2f;
 }
 
 #authForm>.btn {
-  background-color: #003049;
+  background-color: #ff5047;
   border-radius: 5px;
   color: #e9ecef;
   font-size: 1em;
@@ -477,7 +494,7 @@ input {
   height: 170px;
   padding: 20px;
   color: #fff;
-  background: #262626;
+  background: #ff5047;
   text-shadow: 0 2px 2px black;
   box-sizing: border-box;
 }
@@ -488,7 +505,7 @@ input {
   grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
   grid-gap: 10px;
   box-sizing: border-box;
-  background: azure;
+  background: #1c1c1c;
 
 }
 
@@ -498,7 +515,7 @@ input {
   justify-content: center;
   height: 25px;
   font-weight: 600;
-  color: #262626;
+  color: #ff5047;
 }
 
 .calendar__number {
@@ -507,7 +524,7 @@ input {
   justify-content: center;
   padding: 5px;
   cursor: pointer;
-  color: #262626;
+  color: white;
   border-radius: 2px;
 
 }
@@ -524,8 +541,9 @@ input {
 }
 
 .highlight {
-  background-color: #181818;
-  color: azure;
+  background-color: #ff5047;
+  color: white;
+  transition: var(--transition);
 }
 
 .highlight p {
@@ -552,7 +570,7 @@ i:hover {
   border-top-left-radius: 8px;
   max-height: 170px;
   min-height: 170px;
-  background: #262626;
+  background: #ff5047;
 }
 
 .top  h3 {
@@ -607,7 +625,7 @@ i:hover {
 }
 
 .workout-item {
-  color: black;
+  color: white;
   display: flex;
   flex-direction: row;
   margin: 5px;
@@ -673,6 +691,7 @@ i:hover {
     border: none;
     font-size: 1em;
     cursor: pointer;
+    color: #ff5047;
   }
 
 }
@@ -698,19 +717,24 @@ i:hover {
 #workoutForm > input {
   border: none;
   padding: 5px;
-  background: azure;
+  background: #2f2f2f;
   width: 100%;
+  color: white;
 }
 
 #workoutForm > select {
   border: none;
+  border-radius: 50px;
   padding: 5px;
   width: 50%;
-  background: azure;
+  background: #2f2f2f;
+  color: white;
 }
 
 #workoutForm>.btn {
+  border: none;
   width: 200px;
+  background: #ff5047;
 }
 
 .workout-btn {
@@ -720,7 +744,7 @@ i:hover {
   font-size: 1em;
   cursor: pointer;
   width: 50px;
-  color: #181818;
+  color: #ff5047;
 }
 
 .bottom-btn {
@@ -737,6 +761,7 @@ i:hover {
   display: flex;
   cursor: pointer;
   justify-content: right;
+  color: #ff5047;
   margin: 10px 0 10px 0;
 }
 
@@ -752,7 +777,7 @@ i:hover {
 
 .in-box {
   position: relative;
-  background: azure;
+  background: #1c1c1c;
   height: 392px;
 }
 
@@ -763,13 +788,19 @@ i:hover {
 }
 
 #workout-comment > input {
-  border: 1px solid gray;
+  border: none;
   padding: 5px;
-  background: azure;
+  background: #2f2f2f;
+  color: white;
+}
+
+#workout-comment > input:focus {
+  background: #2f2f2f;
+  color: white;
 }
 
 #workout-comment > span > p {
-  color: black;
+  color: white;
   font-weight: normal;
   padding: 10px;
 }
@@ -777,13 +808,13 @@ i:hover {
 #workout-comment > span {
   display: flex;
   align-items: center;
-  color: black;
+  color: white;
   font-size: 14px;
   font-weight: 600;
 }
 
 .workout-log {
-  background: azure;
+  background: #1c1c1c;
   border-radius: 10px;
   max-width: 900px;
 }
@@ -802,13 +833,13 @@ i:hover {
 .saved-set span {
   display: flex;
   align-items: center;
-  color: black;
+  color: white;
   font-size: 14px;
   font-weight: 600;
 }
 
 .saved-set p {
-  color: black;
+  color: white;
   font-weight: normal;
   padding: 10px;
 }
@@ -819,7 +850,7 @@ i:hover {
   font-size: 1em;
   cursor: pointer;
   width: 25px;
-  color: #181818;
+  color: #ff5047;
 }
 
 .save-btn:hover {
@@ -839,7 +870,7 @@ i:hover {
   font-size: 1em;
   cursor: pointer;
   width: 25px;
-  color: #181818;
+  color: #ff5047;
 }
 
 .delete-btn:hover {
@@ -850,7 +881,10 @@ i:hover {
 .add-set {
   display: flex;
   flex-direction: row;
+}
 
+.add-set p {
+  color: white;
 }
 
 .add-set-btn {
@@ -860,7 +894,7 @@ i:hover {
   border: none;
   cursor: pointer;
   padding: 5px;
-  color: #181818;
+  color: #ff5047;
 }
 
 .calendarIcon {
