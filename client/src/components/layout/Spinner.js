@@ -1,13 +1,7 @@
-import spinner from './spinner.gif';
+
 
 const Spinner = () => (
-    <>
-        <img
-            src={spinner}
-            style={{ width: '200px', margin: 'auto', display: 'block' }}
-            alt='Loading...'
-        />
-    </>
+   <div className="loader"></div>
 );
 
 export default Spinner;

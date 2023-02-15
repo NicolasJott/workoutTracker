@@ -487,6 +487,7 @@ input {
   box-sizing: border-box;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: 1px 3px 10px #1c1c1c;
 }
 
 .calendar__picture {
@@ -495,7 +496,6 @@ input {
   padding: 20px;
   color: #fff;
   background: #ff5047;
-  text-shadow: 0 2px 2px black;
   box-sizing: border-box;
 }
 
@@ -527,6 +527,31 @@ input {
   color: white;
   border-radius: 2px;
 
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  margin: -76px 0 0 -76px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #ff5047;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .calendar-num {
@@ -585,7 +610,7 @@ i:hover {
   min-width: 40vw ;
   overflow-y: auto;
   overflow-x: hidden;
-  min-height: auto;
+  height: 600px;
   padding: 20px;
   scrollbar-gutter: stable;
   position: relative;
@@ -773,6 +798,7 @@ i:hover {
   box-sizing: border-box;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: 1px 3px 10px #1c1c1c;
 }
 
 .in-box {
@@ -817,6 +843,7 @@ i:hover {
   background: #1c1c1c;
   border-radius: 10px;
   max-width: 900px;
+  box-shadow: 1px 3px 10px #1c1c1c;
 }
 
 .saved-set {

@@ -70,11 +70,11 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
 
 
                             ))}
-                            {!action && (
-                                <button className="workout-btn" onClick={handleClick}><FontAwesomeIcon icon={faPlusSquare} size="2xl"/></button>
-                            )}
                             {action && <WorkoutForm onFormClose={handleFormClose} selectedDate={selectedDate}/>}
                         </div>
+                        {!action && (
+                            <button className="workout-btn" onClick={handleClick}><FontAwesomeIcon icon={faPlusSquare} size="2xl"/></button>
+                        )}
                     </>
                 ) : (
                     <Calendar currentDate={selectedDate} onCalendarClose={handleCalendarClose} onDateSelection={onCalendarChange}/>
