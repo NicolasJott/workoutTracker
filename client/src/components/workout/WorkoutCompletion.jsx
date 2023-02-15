@@ -1,4 +1,4 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import {connect} from "react-redux";
 import { getSet, saveSet} from "../../actions/workout";
 import PropTypes from "prop-types";
@@ -49,9 +49,9 @@ const WorkoutCompletion = ({ indexNum, workoutId, saveSet, getSet } ) => {
                 </>
             ) : (
                 <>
-                    <p>Repetitions: {reps}</p>
-                    <p>Weight: {weight}</p>
-                    <p>Notes: {comment}</p>
+                        <span>Repetitions: <p>{reps}</p></span>
+                        <span>Weight:<p> {weight}</p></span>
+                        <span>Notes: <p> {comment}</p></span>
                 </>
             )}
 

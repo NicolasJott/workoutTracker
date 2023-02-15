@@ -662,6 +662,7 @@ i:hover {
   }
 
   .saved-set p {
+
   }
 
   .workout-btn {
@@ -764,10 +765,18 @@ i:hover {
   background: azure;
 }
 
-#workout-comment > p {
-  font-weight: 600;
-  font-size: 14px;
+#workout-comment > span > p {
   color: black;
+  font-weight: normal;
+  padding: 10px;
+}
+
+#workout-comment > span {
+  display: flex;
+  align-items: center;
+  color: black;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .workout-log {
@@ -792,7 +801,6 @@ i:hover {
   color: black;
   font-size: 14px;
   font-weight: 600;
-  padding: 20px;
 }
 
 .saved-set p {
