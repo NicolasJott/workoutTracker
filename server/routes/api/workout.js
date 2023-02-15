@@ -75,33 +75,56 @@ router.delete('/:id', auth, async (req, res) => {
     }
 });
 
-router.post('/set/:id', auth, async (req, res) => {
+router.post('/set/:id/:setIndex', auth, async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty())
         return res.status(400).json({ errors: errors.array() });
 
-    const { index_num, reps, weight, comment } = req.body;
+    const { reps, weight, comment } = req.body;
 
     try {
         const workout = await Workout.findById(req.params.id);
 
-        const newSet = {
-            index_num,
+        const setIndex = parseInt(req.params.setIndex);
+
+
+        workout.set_items[setIndex] = {
             reps,
             weight,
             comment,
         };
 
-        workout.set_items.push(newSet);
-
         await workout.save();
 
-        res.json(workout.set_items);
+        res.json(workout.set_items[setIndex]);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
     }
 })
+
+router.put('/set/:id', auth, async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty())
+        return res.status(400).json({ errors: errors.array() });
+
+    const index_num = parseInt(req.query.index)
+
+    try {
+        const workout = await Workout.findById(req.params.id);
+        workout.numSets = index_num + 1;
+
+
+        await workout.save();
+
+        return res.json(workout.numSets)
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+    }
+)
 
 router.get('/set/:id/', auth, async(req, res) => {
     try{

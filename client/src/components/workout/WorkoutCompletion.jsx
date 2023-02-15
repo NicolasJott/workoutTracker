@@ -1,18 +1,20 @@
 import {useState} from "react";
 import {connect} from "react-redux";
-import { addSet, getSet } from "../../actions/workout";
+import { getSet, saveSet} from "../../actions/workout";
 import PropTypes from "prop-types";
+import {faSave} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const WorkoutCompletion = ({ indexNum, workoutId, addSet, getSet } ) => {
+const WorkoutCompletion = ({ indexNum, workoutId, saveSet, getSet } ) => {
     const [reps, setReps] = useState('')
     const [weight, setWeight] = useState('')
     const [comment, setComment] = useState('')
     const [submitted, setSubmitted] = useState(false)
 
+
     const handleSubmit = async (e) => {
-        const i = indexNum.toString()
         e.preventDefault()
-        await addSet( { i, reps, weight, comment }, workoutId );
+        await saveSet( { reps, weight, comment }, indexNum, workoutId );
         setSubmitted(true);
     }
 
@@ -24,26 +26,26 @@ const WorkoutCompletion = ({ indexNum, workoutId, addSet, getSet } ) => {
                 <>
                     <input
                         type="text"
-                        placeholder="Number of reps"
+                        placeholder="Reps"
                         name="reps"
                         value={reps}
                         onChange={(e) => setReps(e.target.value)}
                     />
                     <input
                         type="text"
-                        placeholder="Amount of weight"
+                        placeholder="Weight (lbs)"
                         name="weight"
                         value={weight}
                         onChange={(e) => setWeight(e.target.value)}
                     />
                     <input
                         type="text"
-                        placeholder="Comments"
+                        placeholder="Notes"
                         name="comment"
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                     />
-                    {/*<button className="save-btn"><FontAwesomeIcon icon={faSave}/></button>*/}
+                    {<button className="save-btn"><FontAwesomeIcon icon={faSave}/></button>}
                 </>
             ) : (
                 <>
@@ -59,9 +61,9 @@ const WorkoutCompletion = ({ indexNum, workoutId, addSet, getSet } ) => {
 }
 
 WorkoutCompletion.propTypes = {
-    addSet: PropTypes.func.isRequired,
+    saveSet: PropTypes.func.isRequired,
     getSet: PropTypes.func.isRequired,
     indexNum: PropTypes.number.isRequired,
 };
 
-export default connect(null, { addSet, getSet })(WorkoutCompletion)
+export default connect(null, { saveSet, getSet })(WorkoutCompletion)

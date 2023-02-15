@@ -1,5 +1,5 @@
 import {formatDate, getDaysInMonth} from "../../utils/formatData";
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 

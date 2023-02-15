@@ -1,12 +1,14 @@
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import {connect, useSelector} from "react-redux";
 import WorkoutCompletion from "./WorkoutCompletion";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlusSquare, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {deleteWorkout} from "../../actions/workout";
-import React, {useState} from "react";
+import React, {useReducer, useState} from "react";
+import {addSet} from "../../actions/workout";
+import Spinner from "../layout/Spinner";
 
-const WorkoutItem = ({ auth, deleteWorkout,  workout: { _id, workoutType, numSets, workout, set_items, time, calories } }) => {
+const WorkoutItem = ({ auth, deleteWorkout, addSet,  workout: { _id, workoutType, numSets, workout, set_items, time, calories } }) => {
 
     const [sets, setSets] = useState(numSets)
 
@@ -14,8 +16,19 @@ const WorkoutItem = ({ auth, deleteWorkout,  workout: { _id, workoutType, numSet
         deleteWorkout(_id)
     }
 
-    const handleAddSet = () => {
+    const handleAddSet = async() => {
+        addSet(sets, _id)
         setSets(sets + 1);
+    }
+
+
+    if (!workout) {
+        return (
+            <div>
+                <Spinner />
+            </div>
+
+        )
     }
 
     if (workoutType === "Weight Lifting") {
@@ -33,9 +46,9 @@ const WorkoutItem = ({ auth, deleteWorkout,  workout: { _id, workoutType, numSet
                             <h4 className="workout-item">Set {i + 1}:</h4>
                             {set_items[i] ? (
                                 <div className="saved-set">
-                                    <p>Repetitions: {set_items[i].reps}</p>
-                                    <p>Weight: {set_items[i].weight}</p>
-                                    <p>Notes: {set_items[i].comment}</p>
+                                    <span>Repetitions: <p>{set_items[i].reps}</p></span>
+                                    <span>Weight:<p> {set_items[i].weight}</p></span>
+                                    <span>Notes: <p> {set_items[i].comment}</p></span>
                                 </div>
                             ) : (
                                 <WorkoutCompletion indexNum={i} workoutId={_id}/>
@@ -72,10 +85,11 @@ WorkoutItem.defaultProps = {
 WorkoutItem.propTypes = {
     workout: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
-    deleteWorkout: PropTypes.func.isRequired
+    deleteWorkout: PropTypes.func.isRequired,
+    addSet: PropTypes.func.isRequired,
 
 };
 
 const mapStateToProps = (state) => ({ auth: state.auth });
 
-export default connect(mapStateToProps, { deleteWorkout })(WorkoutItem);
+export default connect(mapStateToProps, { deleteWorkout, addSet })(WorkoutItem);

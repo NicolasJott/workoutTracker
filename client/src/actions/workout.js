@@ -1,5 +1,5 @@
 import api from '../utils/api';
-import {ADD_SET, ADD_WORKOUT, DELETE_WORKOUT, GET_SET, GET_WORKOUTS, LOG_ERROR} from "./types";
+import {ADD_SET, ADD_WORKOUT, DELETE_WORKOUT, GET_SET, GET_WORKOUTS, LOG_ERROR, SAVE_SET} from "./types";
 import {setAlert} from "./alert";
 
 export const getWorkouts = (selectedDate) => async (dispatch) => {
@@ -66,7 +66,7 @@ export const deleteWorkout = (id) => async (dispatch) => {
             payload: id,
         });
 
-        dispatch(setAlert('Post Removed', 'success'));
+        dispatch(setAlert('Workout Removed', 'success'));
     } catch (err) {
         dispatch({
             type: LOG_ERROR,
@@ -78,12 +78,34 @@ export const deleteWorkout = (id) => async (dispatch) => {
     }
 }
 
-export const addSet = ({ index_num, reps, weight, comment}, workoutId) => async (dispatch) => {
+export const saveSet = ({  reps, weight, numSets, comment}, indexNum, workoutId) => async (dispatch) => {
 
-    const body = { index_num, reps, weight, comment };
+    const body = { reps, weight, numSets, comment };
 
     try {
-        const res = await api.post(`/workout/set/${workoutId}`, body);
+        const res = await api.post(`/workout/set/${workoutId}/${indexNum}`, body);
+
+        dispatch({
+            type: SAVE_SET,
+            payload: res.data,
+        });
+
+        dispatch(setAlert('Set Saved', 'success'));
+    } catch (err) {
+        dispatch({
+            type: LOG_ERROR,
+            payload: {
+                msg: err.response.statusText,
+                status: err.response.status,
+            },
+        });
+    }
+}
+
+export const addSet = (index_num, workoutId) => async (dispatch) => {
+
+    try{
+        const res = await api.put(`/workout/set/${workoutId}?index=${index_num}`);
 
         dispatch({
             type: ADD_SET,

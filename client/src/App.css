@@ -636,6 +636,43 @@ i:hover {
   justify-content: center;
 }
 
+@media screen and (max-width: 450px ) {
+
+  .workout-container {
+    max-width: 400px;
+    max-height: 700px;
+  }
+
+  .workout-log {
+    width: 400px;
+    height: auto;
+    min-height: 400px;
+  }
+
+  .logs {
+    max-width: 380px;
+  }
+
+  #workout-comment > input {
+    max-width: 75px;
+  }
+
+  .saved-set span {
+    font-size: 8px;
+  }
+
+  .saved-set p {
+  }
+
+  .workout-btn {
+    background: none;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+  }
+
+}
+
 .log-container {
   position: relative;
   height: 95vh;
@@ -678,7 +715,8 @@ i:hover {
   border: none;
   font-size: 1em;
   cursor: pointer;
-  width: 25px;
+  width: 50px;
+  color: #181818;
 }
 
 .bottom-btn {
@@ -740,6 +778,7 @@ i:hover {
 .saved-set {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -747,11 +786,19 @@ i:hover {
   cursor: pointer;
 }
 
-.saved-set p {
+.saved-set span {
+  display: flex;
+  align-items: center;
   color: black;
   font-size: 14px;
   font-weight: 600;
   padding: 20px;
+}
+
+.saved-set p {
+  color: black;
+  font-weight: normal;
+  padding: 10px;
 }
 
 .save-btn {
@@ -760,6 +807,12 @@ i:hover {
   font-size: 1em;
   cursor: pointer;
   width: 25px;
+  color: #181818;
+}
+
+.save-btn:hover {
+  color: #28a745;
+  transition: var(--transition);
 }
 
 .workout-header {
@@ -774,6 +827,7 @@ i:hover {
   font-size: 1em;
   cursor: pointer;
   width: 25px;
+  color: #181818;
 }
 
 .delete-btn:hover {
@@ -794,6 +848,7 @@ i:hover {
   border: none;
   cursor: pointer;
   padding: 5px;
+  color: #181818;
 }
 
 .calendarIcon {
