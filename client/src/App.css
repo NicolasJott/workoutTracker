@@ -636,6 +636,8 @@ i:hover {
   justify-content: center;
 }
 
+
+
 @media screen and (max-width: 450px ) {
 
   .workout-container {
@@ -645,6 +647,7 @@ i:hover {
 
   .workout-log {
     width: 400px;
+    max-width: 400px;
     height: auto;
     min-height: 400px;
   }
@@ -782,6 +785,7 @@ i:hover {
 .workout-log {
   background: azure;
   border-radius: 10px;
+  max-width: 900px;
 }
 
 .saved-set {
@@ -907,6 +911,8 @@ i:hover {
 
   .workout-log {
     margin: 0 50px 0 0;
+    min-width: 600px;
+    max-width: 8000px;
   }
 
 }
