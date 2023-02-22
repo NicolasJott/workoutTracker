@@ -8,7 +8,6 @@ import {connect} from "react-redux";
 
 import { faPlusSquare, faCalendar } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {store} from "../../store";
 
 
 const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
