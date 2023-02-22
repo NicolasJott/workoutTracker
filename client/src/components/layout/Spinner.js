@@ -1,7 +1,10 @@
 
 
 const Spinner = () => (
-   <div className="loader"></div>
+    <section>
+        <div className="loader"></div>
+    </section>
+
 );
 
 export default Spinner;
