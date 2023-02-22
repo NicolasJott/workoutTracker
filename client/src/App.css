@@ -684,23 +684,27 @@ i:hover {
 @media screen and (max-width: 450px ) {
 
   .workout-container {
-    max-width: 400px;
+    max-width: 300px;
     max-height: 700px;
   }
 
   .workout-log {
-    width: 400px;
-    max-width: 400px;
+    max-width: 350px;
     height: auto;
     min-height: 400px;
   }
 
   .logs {
-    max-width: 380px;
+    max-width: 350px;
+  }
+
+  #workout-comment {
   }
 
   #workout-comment > input {
     max-width: 75px;
+    padding: 0;
+    margin: 0;
   }
 
   .saved-set span {
@@ -815,9 +819,10 @@ i:hover {
 
 #workout-comment > input {
   border: none;
-  padding: 5px;
   background: #2f2f2f;
   color: white;
+  padding: 5px;
+  margin: 2px;
 }
 
 #workout-comment > input:focus {
@@ -970,10 +975,11 @@ i:hover {
     margin-left: 5px;
   }
 
+
   .workout-log {
     margin: 0 50px 0 0;
     min-width: 600px;
-    max-width: 8000px;
+    max-width: 800px;
   }
 
 }

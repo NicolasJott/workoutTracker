@@ -22,15 +22,6 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                 </div>
                 {isAuthenticated && (
                     <div className="navMenu">
-                        <div className="navItem">
-                            <Link to={'/'}>Home</Link>
-                        </div>
-                        <div className="navItem">
-                            <Link to={'/workout'}>Workout</Link>
-                        </div>
-                        <div className="navItem">
-                            <Link to={'/meal'}>Calorie</Link>
-                        </div>
                     </div>
                 )}
                 <div className="navBtn">

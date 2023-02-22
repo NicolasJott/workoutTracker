@@ -24,13 +24,6 @@ const Sidebar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                 <FontAwesomeIcon icon={faClose} onClick={toggleSidebar}/>
             </div>
             <div className="sidebarWrapper">
-                {isAuthenticated && (
-                    <div className="sidebarMenu">
-                        <Link to={'/'} onClick={toggleSidebar}>Home</Link>
-                        <Link to={'/workout'} onClick={toggleSidebar}>Workout</Link>
-                        <Link to={'/meal'} onClick={toggleSidebar}>Calorie</Link>
-                    </div>
-                )}
                 <div className="sideBtnWrap">
                     {!isAuthenticated ? (
                         <Link to={'/login'}> Sign In</Link>

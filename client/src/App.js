@@ -1,4 +1,5 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import {RedirectFunction} from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Headers/Header";
 import Sidebar from "./components/Headers/Sidebar";
@@ -19,6 +20,10 @@ import { LOGOUT } from './actions/types';
 import setAuthToken from './utils/setAuthToken';
 
 import './App.css'
+
+function Redirect() {
+    return null;
+}
 
 function App() {
 
@@ -45,15 +50,12 @@ function App() {
               <Sidebar/>
               <Alert/>
               <Routes>
-                  <Route path="/" element={<Home />} />
                   <Route path="/login" element={<Login/>} />
                   <Route path="/register" element={<Register/>}/>
+                  <Route path="/" element={<Navigate to={'/workout'} />}/>
                   <Route path='workout'
                          element={<PrivateRoute component={WorkoutPage}/> }
                          />
-                  <Route path='meal'
-                         element={<PrivateRoute component={MealTracker}/> }
-                  />
                   <Route path='/*' element={<NotFound/>} />
               </Routes>
               <Footer/>
