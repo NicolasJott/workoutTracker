@@ -8,8 +8,12 @@ html {
 }
 
 body {
-
+  min-height: 100%;
+  width: 100%;
+  margin: 0;
+  line-height: 1.3;
   background: #262626;
+  overflow-x: hidden;
 
 
   margin: 0;
@@ -276,7 +280,6 @@ section {
   justify-content: center;
   text-align: center;
   align-items: center;
-  margin: 50px 0 50px 0;
   z-index: 1;
 }
 
@@ -668,36 +671,33 @@ i:hover {
   flex-direction: column;
 }
 
-.col-right{
-  display: none;
-}
+
+
+
 
 .workout-container {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  max-height: 100%;
+  display: grid;
+  align-items: center;
   justify-content: center;
+  width: 1100px;
+  margin: 0 20px 0 20px;
 }
+
+.workout-container .inner {
+  display: grid;
+  width: 100%;
+  height: auto;
+  grid-template-columns: 3fr 2fr;
+  justify-content: center;
+  gap: 50px;
+}
+
 
 
 
 @media screen and (max-width: 450px ) {
 
-  .workout-container {
-    max-width: 300px;
-    max-height: 700px;
-  }
 
-  .workout-log {
-    max-width: 350px;
-    height: auto;
-    min-height: 400px;
-  }
-
-  .logs {
-    max-width: 350px;
-  }
 
   #workout-comment {
   }
@@ -785,6 +785,7 @@ i:hover {
   color: #181818;
   height: 50px;
   width: 50px;
+
 }
 
 .exit-button {
@@ -848,7 +849,6 @@ i:hover {
 .workout-log {
   background: #1c1c1c;
   border-radius: 10px;
-  max-width: 900px;
   box-shadow: 1px 3px 10px #1c1c1c;
 }
 
@@ -975,12 +975,32 @@ i:hover {
     top:0;
     margin-left: 5px;
   }
+  .workout-right {
+    width: max-content;
+  }
 
 
   .workout-log {
-    margin: 0 50px 0 0;
-    min-width: 600px;
-    max-width: 800px;
+    width: 100%;
   }
 
+}
+
+@media (max-width: 850px) {
+  .workout-container {
+    display: flex;
+  }
+
+  .workout-container .inner {
+    display: flex;
+    width: 100%;
+  }
+
+  .workout-log{
+    width: 100%;
+  }
+
+  .workout-right{
+    display: none;
+  }
 }
