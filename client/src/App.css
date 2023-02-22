@@ -407,15 +407,24 @@ input {
 }
 
 #authForm>input,
-.btn {
+.btn, #authForm>div input, btn {
   border: none;
   padding: .9em 1em;
   background-color: #2f2f2f;
   color: white;
 }
 
+.first-last {
+  display: flex;
+  justify-content: space-between;
+}
 
-#authForm>input:focus {
+.first-last input {
+  width: 125px;
+}
+
+
+#authForm>input:focus, #authForm>div input:focus {
   outline: none;
   color: white;
   background: #2f2f2f;

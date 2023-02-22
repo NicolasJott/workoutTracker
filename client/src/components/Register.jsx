@@ -47,26 +47,29 @@ return (
                 <div className="col-1">
                     <h2>Create an Account</h2>
                     <form id="authForm" className="flex flex-col" onSubmit={handleOnSubmit} >
-                        <input
-                            type='text'
-                            placeholder='First Name'
-                            name='firstName'
-                            value={fields.firstName}
-                            onChange={form.handleChangeEvent}
-                            onBlur={form.handleBlurEvent}
-                            required
-                        />
-                        <span className="error">{errors.firstName ? errors.firstName : ""}</span>
-                        <input
-                            type='text'
-                            placeholder='Last Name'
-                            name='lastName'
-                            value={fields.lastName}
-                            onChange={form.handleChangeEvent}
-                            onBlur={form.handleBlurEvent}
-                            required
-                        />
-                        <span className="error">{errors.lastName ? errors.lastName : ""}</span>
+                        <div className="first-last">
+                            <input
+                                type='text'
+                                className='first-name'
+                                placeholder='First Name'
+                                name='firstName'
+                                value={fields.firstName}
+                                onChange={form.handleChangeEvent}
+                                onBlur={form.handleBlurEvent}
+                                required
+                            />
+                            <input
+                                type='text'
+                                className='last-name'
+                                placeholder='Last Name'
+                                name='lastName'
+                                value={fields.lastName}
+                                onChange={form.handleChangeEvent}
+                                onBlur={form.handleBlurEvent}
+                                required
+                            />
+                        </div>
+                        <span className="error">{errors.firstName ? errors.firstName : "" || errors.lastName ? errors.lastName : "" }</span>
                         <input
                             type='email'
                             placeholder='Email Address'
