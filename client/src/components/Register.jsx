@@ -41,7 +41,8 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
 
 return (
-    <section>
+    <main>
+        <section>
             <div className="register">
                 <div className="col-1">
                     <h2>Create an Account</h2>
@@ -104,6 +105,8 @@ return (
                 </div>
             </div>
         </section>
+    </main>
+
 );
 }
 

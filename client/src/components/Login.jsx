@@ -33,35 +33,38 @@ const Login = ({ login, isAuthenticated }) => {
         }
 
         return (
-        <section>
-            <div className="register">
-                <div className="col-1">
-                    <h2>Log In</h2>
-                    <form id="authForm" className="flex flex-col" onSubmit={handleOnSubmit} >
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Email"
-                            value={fields.email}
-                            onBlur={form.handleBlurEvent}
-                            onChange={form.handleChangeEvent}
-                        />
-                        <span className="error">{errors.email ? errors.email : ""}</span>
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            value={fields.password}
-                            onBlur={form.handleBlurEvent}
-                            onChange={form.handleChangeEvent}
-                        />
-                        <span className="error">{errors.password ? errors.password : ""}</span>
-                        <button className="btn">Login</button>
-                        <span>Don't have an account? <Link to="/register"> Register </Link></span>
-                    </form>
+            <main>
+                <section>
+                <div className="register">
+                    <div className="col-1">
+                        <h2>Log In</h2>
+                        <form id="authForm" className="flex flex-col" onSubmit={handleOnSubmit} >
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                                value={fields.email}
+                                onBlur={form.handleBlurEvent}
+                                onChange={form.handleChangeEvent}
+                            />
+                            <span className="error">{errors.email ? errors.email : ""}</span>
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Password"
+                                value={fields.password}
+                                onBlur={form.handleBlurEvent}
+                                onChange={form.handleChangeEvent}
+                            />
+                            <span className="error">{errors.password ? errors.password : ""}</span>
+                            <button className="btn">Login</button>
+                            <span>Don't have an account? <Link to="/register"> Register </Link></span>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+            </main>
+
     );
 }
 

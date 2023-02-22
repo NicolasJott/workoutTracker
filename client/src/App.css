@@ -44,7 +44,7 @@ code {
   font-size: 1rem;
   top: 0;
   z-index: 10;
-  /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .navBarContainer {
@@ -284,7 +284,6 @@ section {
   justify-content: center;
   text-align: center;
   align-items: center;
-  margin: 50px 0 50px 0;
   z-index: 1;
 }
 
@@ -357,7 +356,7 @@ input {
 
 .register {
   max-width: 400px;
-  max-height: 100vh;
+  margin: 50px 0 50px 0;
   border-radius: 5px;
   width: 100vw;
   display: flex;
@@ -689,7 +688,6 @@ i:hover {
   align-items: center;
   justify-content: center;
   width: 1100px;
-  margin: 0 20px 0 20px;
 }
 
 .workout-container .inner {
@@ -719,9 +717,10 @@ i:hover {
     font-size: 8px;
   }
 
-  .saved-set p {
-
+  .workout-container {
+    width: 400px;
   }
+
 
   .workout-btn {
     position: relative;
@@ -730,6 +729,7 @@ i:hover {
     font-size: 1em;
     cursor: pointer;
     color: #ff5047;
+    padding: 5px 0 10px 0;
   }
 
 }
@@ -1014,9 +1014,10 @@ i:hover {
 }
 
 main {
-  margin: 0 auto;
+  margin: 50px auto;
   width: 100%;
   max-width: 1200px;
   display: flex;
   min-height: 100vh;
+
 }
