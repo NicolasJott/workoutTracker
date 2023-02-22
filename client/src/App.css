@@ -264,6 +264,7 @@ footer {
   max-height: 40px;
   display: flex;
   padding: 20px;
+  position: relative;
   align-items: center;
   justify-content: center;
 }
@@ -274,12 +275,14 @@ p {
 }
 
 section {
+  position: relative;
   height: 100vh;
   width: 100vw;
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;
+  margin: 20px 0 20px 0;
   z-index: 1;
 }
 
@@ -676,17 +679,20 @@ i:hover {
 
 
 .workout-container {
+  position: relative;
   display: grid;
   align-items: center;
   justify-content: center;
   width: 1100px;
+  height: 800px;
   margin: 0 20px 0 20px;
 }
 
 .workout-container .inner {
   display: grid;
+  position: relative;
   width: 100%;
-  height: auto;
+  height: 800px;
   grid-template-columns: 3fr 2fr;
   justify-content: center;
   gap: 50px;
@@ -717,6 +723,7 @@ i:hover {
   }
 
   .workout-btn {
+    position: relative;
     background: none;
     border: none;
     font-size: 1em;
@@ -846,9 +853,10 @@ i:hover {
   font-weight: 600;
 }
 
-.workout-log {
+.inner .workout-log {
   background: #1c1c1c;
   border-radius: 10px;
+  height: 100%;
   box-shadow: 1px 3px 10px #1c1c1c;
 }
 
