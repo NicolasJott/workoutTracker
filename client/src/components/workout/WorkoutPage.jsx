@@ -8,13 +8,16 @@ import {connect} from "react-redux";
 
 import { faPlusSquare, faCalendar } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {store} from "../../store";
 
-const today = new Date()
 
 const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
     const [action, setAction] = useState(false);
     const [active, setActive] = useState(false);
-    const [selectedDate, setSelectedDate] = useState(today);
+    const [selectedDate, setSelectedDate] = useState(() => {
+        const storedDate = localStorage.getItem('selectedDate');
+        return storedDate ? new Date(storedDate) : new Date();
+    });
 
 
 
@@ -25,7 +28,7 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
 
     const handleFormClose = () => {
         setAction(false)
-        getWorkouts(today);
+        getWorkouts(selectedDate);
     }
 
     const handleCalendarOpen = () => {
@@ -38,12 +41,17 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
 
     const onCalendarChange = (date) => {
         setSelectedDate(date);
-        getWorkouts(date)
+        localStorage.setItem('selectedDate', date);
+        getWorkouts(date);
     };
 
 
     useEffect(() =>{
-        getWorkouts(today);
+        const storedDate = localStorage.getItem('selectedDate')
+        if(storedDate) {
+            setSelectedDate(new Date(storedDate));
+            getWorkouts(new Date(storedDate));
+        }
     }, [getWorkouts]);
 
 
