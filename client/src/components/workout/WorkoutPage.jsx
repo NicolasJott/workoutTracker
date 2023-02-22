@@ -55,49 +55,52 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
 
 
     return (
-        <section>
-            <div className="workout-container">
-                <div className="inner">
-                    <div className=" workout-log">
-                        {!active ? (
-                            <>
-                                <div className="top">
-                                    <h3 className="h1-2" >{selectedDate.toDateString()}</h3>
-                                    <div className="calendarIcon">
-                                        <FontAwesomeIcon icon={faCalendar} size="2xl" onClick={handleCalendarOpen}/>
+        <main>
+            <section>
+                <div className="workout-container">
+                    <div className="inner">
+                        <div className=" workout-log">
+                            {!active ? (
+                                <>
+                                    <div className="top">
+                                        <h3 className="h1-2" >{selectedDate.toDateString()}</h3>
+                                        <div className="calendarIcon">
+                                            <FontAwesomeIcon icon={faCalendar} size="2xl" onClick={handleCalendarOpen}/>
+                                        </div>
+
+                                        <h3 className="h1-2">Workout Log:</h3>
                                     </div>
+                                    <div className="logs">
+                                        { workouts && workouts.length > 0 && workouts.map((workout) => (
+                                            <>
+                                                <WorkoutItem workoutId={workout._id} workout={workout} />
 
-                                    <h3 className="h1-2">Workout Log:</h3>
-                                </div>
-                                <div className="logs">
-                                    { workouts && workouts.length > 0 && workouts.map((workout) => (
-                                        <>
-                                            <WorkoutItem workoutId={workout._id} workout={workout} />
-
-                                        </>
+                                            </>
 
 
-                                    ))}
-                                    {action && <WorkoutForm onFormClose={handleFormClose} selectedDate={selectedDate}/>}
-                                </div>
-                                {!action && (
-                                    <button className="workout-btn" onClick={handleClick}><FontAwesomeIcon icon={faPlusSquare} size="2xl"/></button>
-                                )}
-                            </>
-                        ) : (
-                            <Calendar currentDate={selectedDate} onCalendarClose={handleCalendarClose} onDateSelection={onCalendarChange}/>
-                        )}
-                    </div>
-                    <div className="workout-right">
-                        <Calendar currentDate={selectedDate} onDateSelection={onCalendarChange}/>
-                        <div className="right-box">
-                            <div className="in-box"></div>
+                                        ))}
+                                        {action && <WorkoutForm onFormClose={handleFormClose} selectedDate={selectedDate}/>}
+                                    </div>
+                                    {!action && (
+                                        <button className="workout-btn" onClick={handleClick}><FontAwesomeIcon icon={faPlusSquare} size="2xl"/></button>
+                                    )}
+                                </>
+                            ) : (
+                                <Calendar currentDate={selectedDate} onCalendarClose={handleCalendarClose} onDateSelection={onCalendarChange}/>
+                            )}
+                        </div>
+                        <div className="workout-right">
+                            <Calendar currentDate={selectedDate} onDateSelection={onCalendarChange}/>
+                            <div className="right-box">
+                                <div className="in-box"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                </div>
 
-        </section>
+            </section>
+        </main>
+
 
 
     );
