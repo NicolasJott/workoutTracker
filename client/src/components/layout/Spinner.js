@@ -1,9 +1,12 @@
 
 
 const Spinner = () => (
-    <section>
-        <div className="loader"></div>
-    </section>
+    <main>
+        <section>
+            <div className="loader"></div>
+        </section>
+    </main>
+
 
 );
 
