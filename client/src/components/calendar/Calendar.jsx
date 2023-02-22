@@ -5,8 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 export const Calendar = ({ currentDate, onDateSelection, onCalendarClose }) => {
-    const storedDate = localStorage.getItem('selectedDate')
-    const date = new Date(storedDate);
+    const [date, setDate] = useState(currentDate || new Date());
     const [monthNumber, setMonthNumber]  = useState(date.getMonth())
     let today = date.getDate();
     const [year, setYear] = useState(date.getFullYear())
