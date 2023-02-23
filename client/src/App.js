@@ -52,7 +52,7 @@ function App() {
               <Routes>
                   <Route path="/login" element={<Login/>} />
                   <Route path="/register" element={<Register/>}/>
-                  <Route path="/" element={<Navigate to={'/workout'} />}/>
+                  <Route path="/" element={<WorkoutPage/>}/>
                   <Route path='workout'
                          element={<PrivateRoute component={WorkoutPage}/> }
                          />
