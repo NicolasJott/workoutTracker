@@ -16,7 +16,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
     return (
         <div className="nav">
             <div className="navBarContainer">
-                <h1 className="logo">FitnessTracker</h1>
+                <h1 className="logo">FitnessTrack</h1>
                 <div className="mobileIcon">
                     <FontAwesomeIcon icon={faBars} onClick={toggleSidebar}/>
                 </div>
