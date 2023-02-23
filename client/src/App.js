@@ -21,9 +21,7 @@ import setAuthToken from './utils/setAuthToken';
 
 import './App.css'
 
-function Redirect() {
-    return null;
-}
+
 
 function App() {
 
@@ -52,7 +50,7 @@ function App() {
               <Routes>
                   <Route path="/login" element={<Login/>} />
                   <Route path="/register" element={<Register/>}/>
-                  <Route path="/" element={<WorkoutPage/>}/>
+                  <Route path="/" element={<Navigate to={'/workout'} />}/>
                   <Route path='workout'
                          element={<PrivateRoute component={WorkoutPage}/> }
                          />
