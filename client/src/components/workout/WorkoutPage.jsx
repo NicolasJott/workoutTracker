@@ -50,6 +50,9 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
         if(storedDate) {
             setSelectedDate(new Date(storedDate));
             getWorkouts(new Date(storedDate));
+        } else {
+            setSelectedDate(new Date())
+            getWorkouts(new Date())
         }
     }, [getWorkouts]);
 
