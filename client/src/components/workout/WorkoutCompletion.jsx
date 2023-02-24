@@ -11,12 +11,12 @@ const WorkoutCompletion = ({indexNum, workoutId, saveSet, onSubmission, placehol
     const [comment, setComment] = useState(placeholders.comment || "");
     const clickedOutsideForm = useRef(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (reps.trim() === '' || weight.trim() === '' || comment.trim() === '') {
             return;
         }
-         saveSet({ reps, weight, comment }, indexNum, workoutId);
+        await saveSet({ reps, weight, comment }, indexNum, workoutId);
         onSubmission();
     };
 
