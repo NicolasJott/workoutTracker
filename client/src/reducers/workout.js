@@ -4,7 +4,7 @@ import {
     ADD_WORKOUT,
     GET_WORKOUT,
     ADD_SET,
-    GET_SET, DELETE_WORKOUT, SAVE_SET,
+    GET_SET, DELETE_WORKOUT, SAVE_SET, DELETE_SET,
 
 } from "../actions/types";
 
@@ -65,6 +65,12 @@ const workoutReducer = ( state = initialState, action) => {
         case GET_SET:
             return {
                 workout: payload,
+                loading: false,
+            }
+        case DELETE_SET:
+            return  {
+                ...state,
+                workouts: state.workouts.filter((workout) => workout.set_items !== payload),
                 loading: false,
             }
         default:

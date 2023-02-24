@@ -1,39 +1,33 @@
 import React, {useState} from "react";
 import {connect} from "react-redux";
-import { getSet, saveSet} from "../../actions/workout";
+import {saveSet} from "../../actions/workout";
 import PropTypes from "prop-types";
-import {faSave} from "@fortawesome/free-solid-svg-icons";
+import  {faSave} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const WorkoutCompletion = ({ indexNum, workoutId, saveSet } ) => {
-    const [reps, setReps] = useState('')
-    const [weight, setWeight] = useState('')
-    const [comment, setComment] = useState('')
-    const [submitted, setSubmitted] = useState(false)
-
+const WorkoutCompletion = ({ indexNum, workoutId, saveSet, onSubmission, placeholders } ) => {
+    const [reps, setReps] = useState(placeholders.reps || '')
+    const [weight, setWeight] = useState(placeholders.weight || '')
+    const [comment, setComment] = useState(placeholders.comment || '')
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         await saveSet( { reps, weight, comment }, indexNum, workoutId );
-        setSubmitted(true);
+        onSubmission();
     }
-
-
 
     return (
         <form id="workout-comment" onSubmit={handleSubmit}>
-            {!submitted ? (
-                <>
                     <input
                         type="text"
-                        placeholder="Reps"
+                        placeholder= {placeholders.reps ? placeholders.reps : "Reps"}
                         name="reps"
                         value={reps}
                         onChange={(e) => setReps(e.target.value)}
                     />
                     <input
                         type="text"
-                        placeholder="Weight (lbs)"
+                        placeholder= {placeholders.weight ? placeholders.weight : "Weight"}
                         name="weight"
                         value={weight}
                         onChange={(e) => setWeight(e.target.value)}
@@ -41,22 +35,12 @@ const WorkoutCompletion = ({ indexNum, workoutId, saveSet } ) => {
                     <input
                         type="text"
                         placeholder="Notes"
-                        name="comment"
+                        name= {placeholders.comment ? placeholders.comment : "Notes"}
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                     />
-                    {<button className="save-btn"><FontAwesomeIcon icon={faSave}/></button>}
-                </>
-            ) : (
-                <>
-                        <span>Repetitions: <p>{reps}</p></span>
-                        <span>Weight:<p> {weight}</p></span>
-                        <span>Notes: <p> {comment}</p></span>
-                </>
-            )}
-
+                    <button className="save-btn"><FontAwesomeIcon icon={faSave}/></button>
         </form>
-
     )
 }
 

@@ -19,15 +19,13 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
     });
 
 
-
-
     const handleClick = () => {
         setAction(true)
     }
 
-    const handleFormClose = () => {
+    const handleFormClose = async() => {
+        await getWorkouts(selectedDate);
         setAction(false)
-        getWorkouts(selectedDate);
     }
 
     const handleCalendarOpen = () => {
@@ -38,14 +36,14 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
         setActive(false)
     }
 
-    const onCalendarChange = (date) => {
+    const onCalendarChange = async (date) => {
         setSelectedDate(date);
         localStorage.setItem('selectedDate', date);
-        getWorkouts(date);
+        await getWorkouts(date);
     };
 
 
-    useEffect(() =>{
+    useEffect(() => {
         const storedDate = localStorage.getItem('selectedDate')
         if(storedDate) {
             setSelectedDate(new Date(storedDate));
@@ -74,9 +72,9 @@ const WorkoutPage = ({ getWorkouts, workout: { workouts }}) => {
                                         <h3 className="h1-2">Workout Log:</h3>
                                     </div>
                                     <div className="logs">
-                                        { workouts && workouts.length > 0 && workouts.map((workout) => (
+                                        {workouts && workouts.length > 0 && workouts.slice().map((workout) => (
                                             <>
-                                                <WorkoutItem workoutId={workout._id} workout={workout} />
+                                                <WorkoutItem workoutId={workout._id} date={selectedDate} workout={workout} />
 
                                             </>
 
