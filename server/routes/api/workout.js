@@ -23,11 +23,18 @@ router.post(
         try {
             const user = await User.findById(req.user.id).select('-password');
 
+            let set_items = [];
+
+            for (let i = 0; i < numSets; i++) {
+                set_items.push([{ reps: '', weight: '', comment: '' }])
+            }
+
             let newWorkout = new Workout({
                 user: user.id,
                 workoutType,
                 workout,
                 numSets,
+                set_items,
                 time,
                 calories,
                 date,
@@ -103,6 +110,80 @@ router.post('/set/:id/:setIndex', auth, async (req, res) => {
     }
 })
 
+// @route   PUT api/workout
+// @desc    edit a set inside a workout
+// @access  Private
+router.put('/:id/:setIndex', auth, async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty())
+        return res.status(400).json({ errors: errors.array() });
+
+    const { reps, weight, comment } = req.body;
+    const { id, setIndex } = req.params;
+
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        const workout = await Workout.findById(id);
+
+        if (!workout) {
+            return res.status(404).json({ msg: 'Workout not found'});
+        }
+
+        if (workout.user.toString() !== req.user.id) {
+            return res.status(401).json({ msg: 'Not authorized'});
+        }
+
+        if (setIndex < 0 || setIndex >= workout.set_items.length) {
+            return res.status(400).json({ msg: 'Invalid set index' });
+        }
+
+        workout.set_items[setIndex].reps = reps;
+        workout.set_items[setIndex].weight = weight;
+        workout.set_items[setIndex].comment = comment;
+
+        await workout.save();
+
+        res.json(workout);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+})
+
+// @route   DELETE api/workout
+// @desc    delete a set inside a workout
+// @access  Private
+
+router.delete('/:id/:setIndex', auth, async (req, res) => {
+    const { id, setIndex } = req.params;
+
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        const workout = await Workout.findById(id);
+
+        if (!workout) {
+            return res.status(404).json({ msg: 'Workout not found'});
+        }
+
+        if (workout.user.toString() !== req.user.id) {
+            return res.status(401).json({ msg: 'Not authorized'});
+        }
+
+        if (setIndex < 0 || setIndex >= workout.set_items.length) {
+            return res.status(400).json({ msg: 'Invalid set index' });
+        }
+
+        workout.set_items.splice(setIndex, 1);
+
+        await workout.save();
+
+        res.json(workout);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+})
+/*
 router.put('/set/:id', auth, async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty())
@@ -125,6 +206,8 @@ router.put('/set/:id', auth, async (req, res) => {
     }
     }
 )
+
+ */
 
 router.get('/set/:id/', auth, async(req, res) => {
     try{

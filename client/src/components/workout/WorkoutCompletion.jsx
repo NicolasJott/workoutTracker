@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import {faSave} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const WorkoutCompletion = ({ indexNum, workoutId, saveSet, getSet } ) => {
+const WorkoutCompletion = ({ indexNum, workoutId, saveSet } ) => {
     const [reps, setReps] = useState('')
     const [weight, setWeight] = useState('')
     const [comment, setComment] = useState('')
@@ -62,8 +62,7 @@ const WorkoutCompletion = ({ indexNum, workoutId, saveSet, getSet } ) => {
 
 WorkoutCompletion.propTypes = {
     saveSet: PropTypes.func.isRequired,
-    getSet: PropTypes.func.isRequired,
     indexNum: PropTypes.number.isRequired,
 };
 
-export default connect(null, { saveSet, getSet })(WorkoutCompletion)
+export default connect(null, { saveSet })(WorkoutCompletion)

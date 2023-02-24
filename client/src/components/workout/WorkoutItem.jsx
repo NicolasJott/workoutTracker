@@ -41,20 +41,21 @@ const WorkoutItem = ({ auth, deleteWorkout, addSet,  workout: { _id, workoutType
 
             <h4 className="workout-item">{sets} sets</h4>
                 <div>
-                    {Array.from({ length: sets }, (_, i) => (
-                        <div key={i}>
-                            <h4 className="workout-item">Set {i + 1}:</h4>
-                            {set_items[i] ? (
-                                <div className="saved-set">
-                                    <span>Repetitions: <p>{set_items[i].reps}</p></span>
-                                    <span>Weight:<p> {set_items[i].weight}</p></span>
-                                    <span>Notes: <p> {set_items[i].comment}</p></span>
-                                </div>
-                            ) : (
-                                <WorkoutCompletion indexNum={i} workoutId={_id}/>
-                            )}
-                        </div>
-                    ))}
+                    {set_items.map((set, i) =>
+                    <div>
+                        <h4 className="workout-item">Set {i + 1}:</h4>
+                        {set_items[i].reps === '' && set_items[i].weight === '' ? (
+                            <div className="saved-set">
+                                <span>Repetitions: <p>{set_items[i].reps}</p></span>
+                                <span>Weight:<p> {set_items[i].weight}</p></span>
+                                <span>Notes: <p> {set_items[i].comment}</p></span>
+                            </div>
+                        ) : (
+                            <WorkoutCompletion indexNum={i} workoutId={_id}/>
+                        )}
+
+                    </div>
+                    )}
                     <div className="add-set">
                         <button className="add-set-btn" onClick={handleAddSet} ><FontAwesomeIcon icon={faPlusSquare} size="sm"/></button><p> Add Set </p>
                     </div>

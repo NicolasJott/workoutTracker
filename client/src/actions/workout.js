@@ -83,7 +83,7 @@ export const saveSet = ({  reps, weight, numSets, comment}, indexNum, workoutId)
     const body = { reps, weight, numSets, comment };
 
     try {
-        const res = await api.post(`/workout/set/${workoutId}/${indexNum}`, body);
+        const res = await api.put(`/workout/${workoutId}/${indexNum}`, body);
 
         dispatch({
             type: SAVE_SET,
@@ -113,26 +113,6 @@ export const addSet = (index_num, workoutId) => async (dispatch) => {
         });
 
         dispatch(setAlert('Set Added', 'success'));
-    } catch (err) {
-        dispatch({
-            type: LOG_ERROR,
-            payload: {
-                msg: err.response.statusText,
-                status: err.response.status,
-            },
-        });
-    }
-}
-
-export const getSet = (index_num, workoutId) => async (dispatch) => {
-    try{
-        const res = await api.get(`/workout/set/${workoutId}?index=${index_num}`)
-
-        dispatch({
-            type: GET_SET,
-            payload: res.data,
-        });
-
     } catch (err) {
         dispatch({
             type: LOG_ERROR,
