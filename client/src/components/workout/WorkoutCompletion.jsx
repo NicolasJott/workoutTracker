@@ -10,28 +10,19 @@ const WorkoutCompletion = ({indexNum, workoutId, saveSet, onSubmission, placehol
     const [weight, setWeight] = useState(placeholders.weight || "");
     const [comment, setComment] = useState(placeholders.comment || "");
     const clickedOutsideForm = useRef(false);
-    const blurTimeout = useRef(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if ((reps.trim() === '' || weight.trim() === '') && clickedOutsideForm.current) {
+        if (reps.trim() === '' || weight.trim() === '' || comment.trim() === '') {
             return;
         }
          saveSet({ reps, weight, comment }, indexNum, workoutId);
         onSubmission();
     };
 
-    const handleClickOutsideForm = (e) => {
-        if (blurTimeout.current) {
-            clearTimeout(blurTimeout.current);
-        }
-        blurTimeout.current = setTimeout(() => {
-            clickedOutsideForm.current = true;
-            handleSubmit(e)
-        }, 1000);
-    };
+
     return (
-        <form id="workout-comment" onBlur={handleClickOutsideForm} onSubmit={handleSubmit} onClick={() => (clickedOutsideForm.current = false)}>
+        <form id="workout-comment" onBlur={handleSubmit} onSubmit={handleSubmit} >
             <input
                 type="text"
                 placeholder={placeholders.reps ? placeholders.reps : "Reps"}
