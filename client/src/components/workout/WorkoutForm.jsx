@@ -42,8 +42,8 @@ const WorkoutForm = ({ addWorkout, onFormClose, selectedDate }) => {
                             required
                         >
                             <option value="">{errors.workoutType ? errors.workoutType : "Select a Workout"}</option>
+                            <option value="Weight Lifting">Strength Training</option>
                             <option value="Cardio">Cardio</option>
-                            <option value="Weight Lifting">Weight Lifting</option>
                         </select>
                         {(workoutType === 'Weight Lifting') ? (
                             <>
