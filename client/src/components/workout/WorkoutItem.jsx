@@ -12,8 +12,6 @@ const WorkoutItem = ({ auth, deleteWorkout, getWorkouts, date, addSet, saveSet, 
 
     const [submitted, setSubmitted] = useState({})
 
-
-
     const handleEdit = async (i) => {
         setSubmitted((prevState) => ({
             ...prevState,

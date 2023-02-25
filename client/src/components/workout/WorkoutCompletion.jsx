@@ -9,20 +9,22 @@ const WorkoutCompletion = ({indexNum, workoutId, saveSet, onSubmission, placehol
     const [reps, setReps] = useState(placeholders.reps || "");
     const [weight, setWeight] = useState(placeholders.weight || "");
     const [comment, setComment] = useState(placeholders.comment || "");
-    const clickedOutsideForm = useRef(false);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (reps.trim() === '' || weight.trim() === '' || comment.trim() === '') {
-            return;
-        }
         await saveSet({ reps, weight, comment }, indexNum, workoutId);
         onSubmission();
     };
 
+    const handleBlur = async (e) => {
+        if (reps.trim() === '' || weight.trim() === '' || comment.trim() === '') {
+            return;
+        }
+        await handleSubmit(e)
+    }
+
 
     return (
-        <form id="workout-comment" onBlur={handleSubmit} onSubmit={handleSubmit} >
+        <form id="workout-comment" onBlur={handleBlur} onSubmit={handleSubmit} >
             <input
                 type="text"
                 placeholder={placeholders.reps ? placeholders.reps : "Reps"}
