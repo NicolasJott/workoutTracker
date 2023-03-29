@@ -979,6 +979,36 @@ i:hover {
   padding: 5px;
 }
 
+.workout-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.workout-block button {
+  width: 120px;
+  height: 80px;
+  text-decoration: none;
+  padding: 5px;
+  margin: 0 10px 20px 0px;
+  border: none;
+  color: azure;
+  cursor: pointer;
+  border-radius: 2px;
+
+}
+.active {
+  background-color: #e74c3c;
+}
+
+.inactive {
+  background-color: #2f2f2f;
+}
+
+.workout-block button:hover {
+  background-color: #e74c3c;
+}
+
 @media (min-width: 900px) {
 
   .close-calendar {
