@@ -20,6 +20,7 @@ import { LOGOUT } from './actions/types';
 import setAuthToken from './utils/setAuthToken';
 
 import './App.css'
+import Account from "./components/Account";
 
 
 
@@ -54,6 +55,9 @@ function App() {
                   <Route path='workout'
                          element={<PrivateRoute component={WorkoutPage}/> }
                          />
+                  <Route path='profile'
+                         element={<PrivateRoute component={Account}/> }
+                  />
                   <Route path='/*' element={<NotFound/>} />
               </Routes>
               <Footer/>

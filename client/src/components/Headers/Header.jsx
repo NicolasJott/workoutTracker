@@ -24,6 +24,11 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
         }
     }
 
+    function handleLogout() {
+        setActive(false)
+        logout()
+    }
+
     return (
         <div>
             <div className="nav">
@@ -34,21 +39,32 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                     </div>
                     {isAuthenticated && (
                         <div className="navMenu">
+                            <div className="navItem">
+                                <Link to={'/'}>Home</Link>
+                            </div>
+                            <div className="navItem">
+                                <Link to={'/workout'}>Workout</Link>
+                            </div>
+                            <div className="navItem">
+                                <Link to={'/meal'}>Calorie</Link>
+                            </div>
                         </div>
                     )}
                     <div className="navBtn">
-                        <button onClick={toggleProfileMenu}>Profile</button>
                         {!isAuthenticated ? (
                             <Link to={'/login'}>Sign In</Link>
                         ) : (
-                            <Link to={'/login'} onClick={logout}>Log Out</Link>
+                            <div>
+                                <div className="profile-btn" onClick={toggleProfileMenu}><img src="/profile_picture.jpg" alt=""/></div>
+                                {/*<Link to={'/login'} onClick={logout}>Log Out</Link>*/}
+                            </div>
                         )}
 
                     </div>
                 </div>
             </div>
-            {active && (
-                <ProfileMenu />
+            {active && isAuthenticated && (
+                <ProfileMenu onLogout={handleLogout} />
             )}
         </div>
 
