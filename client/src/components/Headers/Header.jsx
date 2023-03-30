@@ -29,6 +29,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
         logout()
     }
 
+
     return (
         <div>
             <div className="nav">
@@ -64,7 +65,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                 </div>
             </div>
             {active && isAuthenticated && (
-                <ProfileMenu onLogout={handleLogout} />
+                <ProfileMenu onLogout={handleLogout} onClick={toggleProfileMenu} />
             )}
         </div>
 

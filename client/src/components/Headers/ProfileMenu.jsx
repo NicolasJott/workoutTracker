@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 
 
 
-const ProfileMenu = ( { auth: { isAuthenticated, loading, user }, onLogout }) => {
+const ProfileMenu = ( { auth: { isAuthenticated, loading, user }, onLogout, onClick }) => {
 
     const [userName, setUserName] = useState(user["firstName"] + " " + user["lastName"])
     const [userEmail, setUserEmail] = useState(user["email"])
@@ -23,7 +23,7 @@ const ProfileMenu = ( { auth: { isAuthenticated, loading, user }, onLogout }) =>
                     </div>
                     <div className="box-contents">
                         <div className="profile-block">
-                            <Link to={'/profile'}><h2>Profile</h2></Link>
+                            <Link to={'/profile'} onClick={onClick}><h2>Profile</h2></Link>
                         </div>
                         <div className="logout-block">
                             <Link to={'/login'} onClick={onLogout}><h2>Log Out</h2></Link>
