@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/NicolasJott/workoutTracker/issues"
   },
-  "homepage": "https://github.com/NicolasJott/workoutTracker#readme"
+  "homepage": "https://github.com/NicolasJott/workoutTracker#readme",
+  "dependencies": {
+    "cross-env": "^7.0.3"
+  }
 }

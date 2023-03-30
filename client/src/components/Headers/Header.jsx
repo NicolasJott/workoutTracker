@@ -4,36 +4,54 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {faBars} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, {useState} from "react";
+import ProfileMenu from "./ProfileMenu";
 
 
 const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
 
+    const [ active, setActive ] = useState(false)
     function toggleSidebar(){
         const sidebar = document.querySelector('.sidebarContainer')
         sidebar.classList.toggle('open');
     }
-    return (
-        <div className="nav">
-            <div className="navBarContainer">
-                <h1 className="logo">FitnessTrack</h1>
-                <div className="mobileIcon">
-                    <FontAwesomeIcon icon={faBars} onClick={toggleSidebar}/>
-                </div>
-                {isAuthenticated && (
-                    <div className="navMenu">
-                    </div>
-                )}
-                <div className="navBtn">
-                    {!isAuthenticated ? (
-                        <Link to={'/login'}>Sign In</Link>
-                    ) : (
-                        <Link to={'/login'} onClick={logout}>Log Out</Link>
-                    )}
 
+    function toggleProfileMenu(){
+        if (active === true) {
+            setActive(false)
+        } else {
+            setActive(true)
+        }
+    }
+
+    return (
+        <div>
+            <div className="nav">
+                <div className="navBarContainer">
+                    <h1 className="logo">FitnessTrack</h1>
+                    <div className="mobileIcon">
+                        <FontAwesomeIcon icon={faBars} onClick={toggleSidebar}/>
+                    </div>
+                    {isAuthenticated && (
+                        <div className="navMenu">
+                        </div>
+                    )}
+                    <div className="navBtn">
+                        <button onClick={toggleProfileMenu}>Profile</button>
+                        {!isAuthenticated ? (
+                            <Link to={'/login'}>Sign In</Link>
+                        ) : (
+                            <Link to={'/login'} onClick={logout}>Log Out</Link>
+                        )}
+
+                    </div>
                 </div>
             </div>
+            {active && (
+                <ProfileMenu />
+            )}
         </div>
+
     );
 }
 

@@ -161,6 +161,20 @@ code {
     transition: 0.8s all ease;
   }
 }
+/******************************/
+/*          Profile Menu      */
+/******************************/
+
+
+.profile-box {
+  width: 200px;
+  height: 300px;
+  top: 0;
+  right: 0;
+  background-color: #e74c3c;
+  z-index: 1000;
+}
+
 
 /******************************/
 /*          SIDEBAR           */
