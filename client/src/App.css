@@ -202,6 +202,7 @@ section {
   margin: 2em auto;
 
 }
+
 #form>input:focus {
   outline: none;
 }
@@ -402,7 +403,7 @@ i:hover {
   background: #262626;
 }
 
-.top  h3 {
+.top h3 {
   color: azure;
 }
 
@@ -455,15 +456,15 @@ i:hover {
   flex-direction: column;
 }
 
-.col-left{
+.col-left {
   display: flex;
   flex-direction: column;
 }
 
-.col-right{
+.col-right {
   display: flex;
   flex-direction: column;
-  top:0;
+  top: 0;
   margin-left: 5px;
 }
 
@@ -493,14 +494,14 @@ i:hover {
   justify-content: center;
 }
 
-#workoutForm > input {
+#workoutForm>input {
   border: none;
   padding: 5px;
   background: azure;
   width: 100%;
 }
 
-#workoutForm > select {
+#workoutForm>select {
   border: none;
   padding: 5px;
   width: 50%;
